@@ -1,0 +1,52 @@
+[
+    {
+      "_id": "customers",
+      "type": "pipe",
+        "source": {
+            "type": "json_remote",
+            "url": "customers.json"
+        }
+    },
+    {
+      "_id": "orders",
+      "type": "pipe",
+      "source": {
+          "type": "json_remote",
+          "url": "orders.json"
+      }
+    },
+  {
+    "_id": "customers-with-orders",
+    "type": "pipe",
+    "source": {
+      "type": "dataset",
+      "dataset": "customers"
+    },
+    "transform": {
+      "type": "dtl",
+      "dataset": "customers",
+      "transforms": {
+          "default": [
+              ["add", "type", "customer"],
+              ["add", "name", ["concat", ["list", "_S.first_name", " ", "_S.last_name"]]],
+              ["add", "orders", ["apply", "order", ["hops", {
+                  "datasets": ["orders o"],
+                  "where": [
+                      ["eq", "_S._id", "o.customer_id"]
+                  ]
+              }]]],
+              ["add", "order_count", ["count", "_T.orders"]]
+          ],
+          "order": [
+              ["add", "items", "_S.items"],
+              ["if", ["neq", null, "_S.discount"],
+               ["add", "discount", "_S.discount"]],
+              ["add", "total",
+               ["minus",
+                ["coalesce", ["list", "_S.discount", 0]],
+                ["sum", ["map", ["multiply", "_.quantity", "_.price"], "_S.items"]]]]
+          ]
+      }
+    }
+  }
+]
