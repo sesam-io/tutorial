@@ -24,7 +24,6 @@
         },
         "transform": {
             "type": "dtl",
-            "dataset": "customers",
             "transforms": {
                 "default": [
                     ["add", "type", "customer"],
