@@ -2,7 +2,7 @@
     {
         "_id": "customer-data",
         "type": "system:url",
-        "base_url": "http://localhost:8000/"
+        "base_url": "http://YOUR-IP-HERE:8080/"
     },
     {
         "_id": "customers",
