@@ -1,9 +1,15 @@
 [
     {
+        "_id": "customer-data",
+        "type": "system:url",
+        "base_url": "http://localhost:8000/"
+    },
+    {
         "_id": "customers",
         "type": "pipe",
         "source": {
             "type": "json",
+            "system": "customer-data",
             "url": "customers.json"
         }
     },
@@ -12,6 +18,7 @@
         "type": "pipe",
         "source": {
             "type": "json",
+            "system": "customer-data",
             "url": "orders.json"
         }
     },
