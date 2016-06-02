@@ -1,24 +1,29 @@
 [
     {
-        "_id": "customer-data",
+        "_id": "customer-system",
         "type": "system:url",
-        "base_url": "http://YOUR-IP-HERE:8080/"
+        "base_url": "http://YOUR-IP-HERE:8080/customers/"
     },
     {
         "_id": "customers",
         "type": "pipe",
         "source": {
             "type": "json",
-            "system": "customer-data",
+            "system": "customer-system",
             "url": "customers.json"
         }
+    },
+    {
+        "_id": "order-system",
+        "type": "system:url",
+        "base_url": "http://YOUR-IP-HERE:8080/orders/"
     },
     {
         "_id": "orders",
         "type": "pipe",
         "source": {
             "type": "json",
-            "system": "customer-data",
+            "system": "customer-system",
             "url": "orders.json"
         }
     },
