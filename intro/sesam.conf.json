@@ -2,7 +2,7 @@
     {
         "_id": "customer-system",
         "type": "system:url",
-        "base_url": "http://YOUR-IP-HERE:8080/customers/"
+        "base_url": "http://YOUR-IP-HERE:8000/customers/"
     },
     {
         "_id": "customers",
@@ -16,14 +16,14 @@
     {
         "_id": "order-system",
         "type": "system:url",
-        "base_url": "http://YOUR-IP-HERE:8080/orders/"
+        "base_url": "http://YOUR-IP-HERE:8000/orders/"
     },
     {
         "_id": "orders",
         "type": "pipe",
         "source": {
             "type": "json",
-            "system": "customer-system",
+            "system": "order-system",
             "url": "orders.json"
         }
     },
