@@ -51,7 +51,8 @@
                     ["filter", ["gt", "_T.total", 25.00]]
                 ],
                 "order": [
-                    ["copy", ["items", "discount"]],
+                    ["copy", "items"],
+                    ["copy", "discount"],
                     ["add", "total",
                      ["minus",
                       ["coalesce", ["list", "_S.discount", 0]],
