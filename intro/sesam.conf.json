@@ -36,7 +36,7 @@
         },
         "transform": {
             "type": "dtl",
-            "transforms": {
+            "rules": {
                 "default": [
                     ["add", "type", "customer"],
                     ["add", "name", ["concat", ["list", "_S.first_name", " ", "_S.last_name"]]],
