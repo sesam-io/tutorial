@@ -1,0 +1,83 @@
+[
+    {
+        "_id": "customers",
+        "type": "pipe",
+        "source": {
+            "type": "embedded",
+            "entities": [
+                {"_id": "1",
+                 "first_name": "John",
+                 "last_name": "Smith",
+                 "age": 42},
+                {"_id": "2",
+                 "first_name": "Maria",
+                 "last_name": "Hawkins",
+                 "age": 32},
+                {"_id": "3",
+                 "first_name": "Pam",
+                 "last_name": "Curie",
+                 "age": 21}
+            ]
+        }
+    },
+    {
+        "_id": "orders",
+        "type": "pipe",
+        "source": {
+            "type": "embedded",
+            "entities": [
+                {"_id": "1000",
+                 "customer_id": "1",
+                 "items": [
+                     {"ean": "978-1852493110", "price": 22.10, "quantity": 2 }
+                 ],
+                 "discount": 4.20},
+                {"_id": "1001",
+                 "customer_id": "1",
+                 "items": [
+                     {"ean": "978-0937381939", "price": 73.50, "quantity": 1 },
+                     {"ean": "978-0060005719", "price": 10.40, "quantity": 1 }
+                 ]},
+                {"_id": "1002",
+                 "customer_id": "2",
+                 "items": [
+                     {"ean": "978-0195367133", "price": 39.95, "quantity": 1 }
+                 ]}
+            ]
+        }
+    },
+    {
+        "_id": "customers-with-orders",
+        "type": "pipe",
+        "source": {
+            "type": "dataset",
+            "dataset": "customers"
+        },
+        "transform": {
+            "type": "dtl",
+            "rules": {
+                "default": [
+                    ["add", "type", "customer"],
+                    ["add", "name", ["concat", ["list", "_S.first_name", " ", "_S.last_name"]]],
+                    ["add", "orders", ["apply", "order", ["hops", {
+                        "datasets": ["orders o"],
+                        "where": [
+                            ["eq", "_S._id", "o.customer_id"]
+                        ]
+                    }]]],
+                    ["add", "order_count", ["count", "_T.orders"]],
+                    ["add", "total", ["sum", ["map", "_.total", "_T.orders"]]],
+                    ["filter", ["gt", "_T.total", 25.00]]
+                ],
+                "order": [
+                    ["copy", "items"],
+                    ["copy", "discount"],
+                    ["add", "total",
+                     ["minus",
+                      ["coalesce", ["list", "_S.discount", 0]],
+                      ["sum", ["map", ["multiply", "_.quantity", "_.price"], "_S.items"]]]]
+                ]
+            }
+        }
+    }
+]
