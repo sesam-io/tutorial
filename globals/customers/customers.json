@@ -1,0 +1,20 @@
+[
+    {"_id": "customers:1",
+     "customers:id": "1",
+     "customers:company_id": "JSM",
+     "customers:first_name": "John",
+     "customers:last_name": "Smith",
+     "customers:age": 42},
+    {"_id": "customers:2",
+     "customers:id": "2",
+     "customers:company_id": "MHA",
+     "customers:first_name": "Maria",
+     "customers:last_name": "Hawkins",
+     "customers:age": 32},
+    {"_id": "customers:3",
+     "customers:id": "3",
+     "customers:company_id": "PCU",
+     "customers:first_name": "Pam",
+     "customers:last_name": "Curie",
+     "customers:age": 21}
+]

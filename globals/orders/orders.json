@@ -1,0 +1,19 @@
+[
+    {"_id": "orders:1000",
+     "orders:customer_id": "~:order-customers:11",
+     "orders:items": [
+         {"ean": "978-1852493110", "price": 22.10, "quantity": 2 }
+     ],
+     "orders:discount": 4.20},
+    {"_id": "orders:1001",
+     "orders:customer_id": "~:order-customers:11",
+     "orders:items": [
+         {"ean": "978-0937381939", "price": 73.50, "quantity": 1 },
+         {"ean": "978-0060005719", "price": 10.40, "quantity": 1 }
+     ]},
+    {"_id": "orders:1002",
+     "orders:customer_id": "~:order-customers:12",
+     "orders:items": [
+         {"ean": "978-0195367133", "price": 39.95, "quantity": 1 }
+     ]}
+]

@@ -1,0 +1,166 @@
+[
+  {
+    "_id": "customers",
+    "type": "pipe",
+    "source": {
+      "type": "embedded",
+      "entities": [{
+        "_id": "customers:1",
+        "customers:age": 42,
+        "customers:company_id": "JSM",
+        "customers:first_name": "John",
+        "customers:id": "1",
+        "customers:last_name": "Smith"
+      }, {
+        "_id": "customers:2",
+        "customers:age": 32,
+        "customers:company_id": "MHA",
+        "customers:first_name": "Maria",
+        "customers:id": "2",
+        "customers:last_name": "Hawkins"
+      }, {
+        "_id": "customers:3",
+        "customers:age": 21,
+        "customers:company_id": "PCU",
+        "customers:first_name": "Pam",
+        "customers:id": "3",
+        "customers:last_name": "Curie"
+      }]
+    }
+  },
+  {
+    "_id": "order-customers",
+    "type": "pipe",
+    "source": {
+      "type": "embedded",
+      "entities": [{
+        "_id": "order-customers:11",
+        "order-customers:company_id": "JSM"
+      }, {
+        "_id": "order-customers:12",
+        "order-customers:company_id": "MHA"
+      }]
+    }
+  },
+  {
+    "_id": "orders",
+    "type": "pipe",
+    "source": {
+      "type": "embedded",
+      "entities": [{
+        "_id": "orders:1000",
+        "orders:customer_id": "~:order-customers:11",
+        "orders:discount": "~f4.2",
+        "orders:items": [{
+          "ean": "978-1852493110",
+          "price": "~f22.1",
+          "quantity": 2
+        }]
+      }, {
+        "_id": "orders:1001",
+        "orders:customer_id": "~:order-customers:11",
+        "orders:items": [{
+          "ean": "978-0937381939",
+          "price": "~f73.5",
+          "quantity": 1
+        }, {
+          "ean": "978-0060005719",
+          "price": "~f10.4",
+          "quantity": 1
+        }]
+      }, {
+        "_id": "orders:1002",
+        "orders:customer_id": "~:order-customers:12",
+        "orders:items": [{
+          "ean": "978-0195367133",
+          "price": "~f39.95",
+          "quantity": 1
+        }]
+      }]
+    }
+  },
+  {
+    "_id": "merged-customers",
+    "type": "pipe",
+    "source": {
+      "type": "merge",
+      "datasets": ["customers c", "order-customers oc"],
+      "equality": [
+        ["eq", "c.customers:company_id", "oc.order-customers:company_id"]
+      ]
+    }
+  },
+  {
+    "_id": "global-customers",
+    "type": "pipe",
+    "source": {
+      "type": "dataset",
+      "dataset": "merged-customers"
+    },
+    "transform": {
+      "type": "dtl",
+      "rules": {
+        "default": [
+          ["copy", "*"],
+          ["add", "type", "customer"],
+          ["add", "name",
+            ["concat",
+              ["list", "_S.first_name", " ", "_S.last_name"]
+            ]
+          ],
+          ["add", "_orders",
+            ["apply", "order",
+              ["hops", {
+                "datasets": ["orders o"],
+                "where": [
+                  ["eq", "_S.$ids", "o.customer_id"]
+                ]
+              }]
+            ]
+          ],
+          ["add", "order_count",
+            ["count", "_T._orders"]
+          ],
+          ["add", "total",
+            ["sum",
+              ["map", "_.total", "_T._orders"]
+            ]
+          ]
+        ],
+        "order": [
+          ["add", "total",
+            ["minus",
+              ["coalesce",
+                ["list", "_S.discount", 0]
+              ],
+              ["sum",
+                ["map",
+                  ["multiply", "_.quantity", "_.price"], "_S.items"]
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    "namespaced_identifiers": true
+  },
+  {
+    "_id": "vip-customers",
+    "type": "pipe",
+    "source": {
+      "type": "dataset",
+      "dataset": "global-customers"
+    },
+    "transform": {
+      "type": "dtl",
+      "rules": {
+        "default": [
+          ["add", "_id", "_S.customers:id"],
+          ["filter",
+            ["gt", "_S.global-customers:total", 25]
+          ]
+        ]
+      }
+    }
+  }
+]
