@@ -1,33 +1,41 @@
 [
   {
-    "_id": "customers",
+    "_id": "crm-customers",
     "type": "pipe",
     "source": {
       "type": "http_endpoint"
     }
   },
   {
-    "_id": "order-customers",
+    "_id": "erp-customers",
     "type": "pipe",
     "source": {
       "type": "http_endpoint"
     }
   },
   {
-    "_id": "orders",
+    "_id": "erp-orders",
     "type": "pipe",
     "source": {
       "type": "http_endpoint"
     }
-  },  
+  },
+  {
+    "_id": "global-orders",
+    "type": "pipe",
+    "source": {
+      "type": "dataset",
+      "dataset": "erp-orders"
+    }
+  },
   {
     "_id": "merged-customers",
     "type": "pipe",
     "source": {
       "type": "merge",
-      "datasets": ["customers c", "order-customers oc"],
+      "datasets": ["erp-customers erp", "crm-customers crm"],
       "equality": [
-        ["eq", "c.customers:company_id", "oc.order-customers:company_id"]
+        ["eq", "erp.erp-customers:company_id", "crm.crm-customers:company_id"]
       ]
     }
   },
@@ -52,7 +60,7 @@
           ["add", "_orders",
             ["apply", "order",
               ["hops", {
-                "datasets": ["orders o"],
+                "datasets": ["global-orders o"],
                 "where": [
                   ["eq", "_S.$ids", "o.customer_id"]
                 ]
@@ -86,7 +94,7 @@
     "namespaced_identifiers": true
   },
   {
-    "_id": "vip-customers",
+    "_id": "crm-vip-customers",
     "type": "pipe",
     "source": {
       "type": "dataset",
@@ -96,7 +104,7 @@
       "type": "dtl",
       "rules": {
         "default": [
-          ["add", "_id", "_S.customers:id"],
+          ["add", "_id", "_S.crm-customers:id"],
           ["filter",
             ["gt", "_S.global-customers:total", 25]
           ]

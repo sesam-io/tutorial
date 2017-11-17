@@ -1,65 +1,65 @@
 [
   {
-    "_id": "customers",
+    "_id": "crm-customers",
     "type": "pipe",
     "source": {
       "type": "embedded",
       "entities": [{
-        "_id": "customers:1",
-        "customers:age": 42,
-        "customers:company_id": "JSM",
-        "customers:first_name": "John",
-        "customers:id": "1",
-        "customers:last_name": "Smith"
+        "_id": "crm-customers:1",
+        "crm-customers:age": 42,
+        "crm-customers:company_id": "JSM",
+        "crm-customers:first_name": "John",
+        "crm-customers:id": "1",
+        "crm-customers:last_name": "Smith"
       }, {
-        "_id": "customers:2",
-        "customers:age": 32,
-        "customers:company_id": "MHA",
-        "customers:first_name": "Maria",
-        "customers:id": "2",
-        "customers:last_name": "Hawkins"
+        "_id": "crm-customers:2",
+        "crm-customers:age": 32,
+        "crm-customers:company_id": "MHA",
+        "crm-customers:first_name": "Maria",
+        "crm-customers:id": "2",
+        "crm-customers:last_name": "Hawkins"
       }, {
-        "_id": "customers:3",
-        "customers:age": 21,
-        "customers:company_id": "PCU",
-        "customers:first_name": "Pam",
-        "customers:id": "3",
-        "customers:last_name": "Curie"
+        "_id": "crm-customers:3",
+        "crm-customers:age": 21,
+        "crm-customers:company_id": "PCU",
+        "crm-customers:first_name": "Pam",
+        "crm-customers:id": "3",
+        "crm-customers:last_name": "Curie"
       }]
     }
   },
   {
-    "_id": "order-customers",
+    "_id": "erp-customers",
     "type": "pipe",
     "source": {
       "type": "embedded",
       "entities": [{
-        "_id": "order-customers:11",
-        "order-customers:company_id": "JSM"
+        "_id": "erp-customers:11",
+        "erp-customers:company_id": "JSM"
       }, {
-        "_id": "order-customers:12",
-        "order-customers:company_id": "MHA"
+        "_id": "erp-customers:12",
+        "erp-customers:company_id": "MHA"
       }]
     }
   },
   {
-    "_id": "orders",
+    "_id": "erp-orders",
     "type": "pipe",
     "source": {
       "type": "embedded",
       "entities": [{
-        "_id": "orders:1000",
-        "orders:customer_id": "~:order-customers:11",
-        "orders:discount": "~f4.2",
-        "orders:items": [{
+        "_id": "erp-orders:1000",
+        "erp-orders:customer_id": "~:erp-customers:11",
+        "erp-orders:discount": "~f4.2",
+        "erp-orders:items": [{
           "ean": "978-1852493110",
           "price": "~f22.1",
           "quantity": 2
         }]
       }, {
-        "_id": "orders:1001",
-        "orders:customer_id": "~:order-customers:11",
-        "orders:items": [{
+        "_id": "erp-orders:1001",
+        "erp-orders:customer_id": "~:erp-customers:11",
+        "erp-orders:items": [{
           "ean": "978-0937381939",
           "price": "~f73.5",
           "quantity": 1
@@ -69,9 +69,9 @@
           "quantity": 1
         }]
       }, {
-        "_id": "orders:1002",
-        "orders:customer_id": "~:order-customers:12",
-        "orders:items": [{
+        "_id": "erp-orders:1002",
+        "erp-orders:customer_id": "~:erp-customers:12",
+        "erp-orders:items": [{
           "ean": "978-0195367133",
           "price": "~f39.95",
           "quantity": 1
@@ -80,13 +80,21 @@
     }
   },
   {
+    "_id": "global-orders",
+    "type": "pipe",
+    "source": {
+      "type": "dataset",
+      "dataset": "erp-orders"
+    }
+  },
+  {
     "_id": "merged-customers",
     "type": "pipe",
     "source": {
       "type": "merge",
-      "datasets": ["customers c", "order-customers oc"],
+      "datasets": ["erp-customers erp", "crm-customers crm"],
       "equality": [
-        ["eq", "c.customers:company_id", "oc.order-customers:company_id"]
+        ["eq", "erp.erp-customers:company_id", "crm.crm-customers:company_id"]
       ]
     }
   },
@@ -111,7 +119,7 @@
           ["add", "_orders",
             ["apply", "order",
               ["hops", {
-                "datasets": ["orders o"],
+                "datasets": ["global-orders o"],
                 "where": [
                   ["eq", "_S.$ids", "o.customer_id"]
                 ]
@@ -145,7 +153,7 @@
     "namespaced_identifiers": true
   },
   {
-    "_id": "vip-customers",
+    "_id": "crm-vip-customers",
     "type": "pipe",
     "source": {
       "type": "dataset",
@@ -155,7 +163,7 @@
       "type": "dtl",
       "rules": {
         "default": [
-          ["add", "_id", "_S.customers:id"],
+          ["add", "_id", "_S.crm-customers:id"],
           ["filter",
             ["gt", "_S.global-customers:total", 25]
           ]

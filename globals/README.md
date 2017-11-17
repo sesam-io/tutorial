@@ -2,7 +2,7 @@
 
 ## Input
 
-Two sources of customers, customer system and order system. Orders reference customers from the order system.
+Two sources of customers, crm system and erp system. Erp orders reference customers from the erp system.
 
 ## Merge
 
@@ -14,4 +14,4 @@ Enrich merged customers with aggregrated values for order count and the total am
 
 ## Outputs
 
-Produce a list of VIP customers to the customer system that has an order total greater than 25.
+Produce a list of VIP customers to the crm system that has an order total greater than 25.
