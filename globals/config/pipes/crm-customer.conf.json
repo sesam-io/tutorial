@@ -1,0 +1,43 @@
+{
+  "_id": "crm-customer",
+  "type": "pipe",
+  "source": {
+    "type": "conditional",
+    "alternatives": {
+      "github": {
+        "type": "json",
+        "system": "github-crm",
+        "url": "crm-customers.json"
+      },
+      "push": {
+        "type": "http_endpoint"
+      },
+      "test": {
+        "type": "embedded",
+        "entities": [{
+          "_id": "crm-customer:1",
+          "crm-customer:age": 42,
+          "crm-customer:company_id": "JSM",
+          "crm-customer:first_name": "John",
+          "crm-customer:id": "1",
+          "crm-customer:last_name": "Smith"
+        }, {
+          "_id": "crm-customer:2",
+          "crm-customer:age": 32,
+          "crm-customer:company_id": "MHA",
+          "crm-customer:first_name": "Maria",
+          "crm-customer:id": "2",
+          "crm-customer:last_name": "Hawkins"
+        }, {
+          "_id": "crm-customer:3",
+          "crm-customer:age": 21,
+          "crm-customer:company_id": "PCU",
+          "crm-customer:first_name": "Pam",
+          "crm-customer:id": "3",
+          "crm-customer:last_name": "Curie"
+        }]
+      }
+    },
+    "condition": "$ENV(node-env)"
+  }
+}

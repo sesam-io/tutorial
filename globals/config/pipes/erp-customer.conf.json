@@ -1,0 +1,28 @@
+{
+  "_id": "erp-customer",
+  "type": "pipe",
+  "source": {
+    "type": "conditional",
+    "alternatives": {
+      "github": {
+        "type": "json",
+        "system": "github-erp",
+        "url": "erp-customers.json"
+      },
+      "push": {
+        "type": "http_endpoint"
+      },
+      "test": {
+        "type": "embedded",
+        "entities": [{
+          "_id": "erp-customer:11",
+          "erp-customer:company_id": "JSM"
+        }, {
+          "_id": "erp-customer:12",
+          "erp-customer:company_id": "MHA"
+        }]
+      }
+    },
+    "condition": "$ENV(node-env)"
+  }
+}
