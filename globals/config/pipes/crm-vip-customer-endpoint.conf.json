@@ -1,0 +1,11 @@
+{
+  "_id": "crm-vip-customer-endpoint",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "crm-vip-customer"
+  },
+  "sink": {
+    "type": "http_endpoint"
+  }
+}
