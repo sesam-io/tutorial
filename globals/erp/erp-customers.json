@@ -1,6 +1,6 @@
 [
-    {"_id": "order-customers:11",
-     "order-customers:company_id": "JSM"},
-    {"_id": "order-customers:12",
-     "order-customers:company_id": "MHA"}
+    {"_id": "erp-customer:11",
+     "erp-customer:company_id": "JSM"},
+    {"_id": "erp-customer:12",
+     "erp-customer:company_id": "MHA"}
 ]

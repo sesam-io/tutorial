@@ -1,50 +1,50 @@
 [
   {
-    "_id": "crm-customers",
+    "_id": "crm-customer",
     "type": "pipe",
     "source": {
       "type": "http_endpoint"
     }
   },
   {
-    "_id": "erp-customers",
+    "_id": "erp-customer",
     "type": "pipe",
     "source": {
       "type": "http_endpoint"
     }
   },
   {
-    "_id": "erp-orders",
+    "_id": "erp-order",
     "type": "pipe",
     "source": {
       "type": "http_endpoint"
     }
   },
   {
-    "_id": "global-orders",
+    "_id": "global-order",
     "type": "pipe",
     "source": {
       "type": "dataset",
-      "dataset": "erp-orders"
+      "dataset": "erp-order"
     }
   },
   {
-    "_id": "merged-customers",
+    "_id": "merged-customer",
     "type": "pipe",
     "source": {
       "type": "merge",
-      "datasets": ["erp-customers erp", "crm-customers crm"],
+      "datasets": ["erp-customer erp", "crm-customer crm"],
       "equality": [
-        ["eq", "erp.erp-customers:company_id", "crm.crm-customers:company_id"]
+        ["eq", "erp.erp-customer:company_id", "crm.crm-customer:company_id"]
       ]
     }
   },
   {
-    "_id": "global-customers",
+    "_id": "global-customer",
     "type": "pipe",
     "source": {
       "type": "dataset",
-      "dataset": "merged-customers"
+      "dataset": "merged-customer"
     },
     "transform": {
       "type": "dtl",
@@ -60,7 +60,7 @@
           ["add", "_orders",
             ["apply", "order",
               ["hops", {
-                "datasets": ["global-orders o"],
+                "datasets": ["global-order o"],
                 "where": [
                   ["eq", "_S.$ids", "o.customer_id"]
                 ]
@@ -94,20 +94,21 @@
     "namespaced_identifiers": true
   },
   {
-    "_id": "crm-vip-customers",
+    "_id": "crm-vip-customer",
     "type": "pipe",
     "source": {
       "type": "dataset",
-      "dataset": "global-customers"
+      "dataset": "global-customer"
     },
     "transform": {
       "type": "dtl",
       "rules": {
         "default": [
-          ["add", "_id", "_S.crm-customers:id"],
+          ["add", "_id", "_S.crm-customer:id"],
           ["filter",
-            ["gt", "_S.global-customers:total", 25]
-          ]
+            ["gt", "_S.global-customer:total", 25]
+          ],
+          ["add", "is-vip", true]
         ]
       }
     }
