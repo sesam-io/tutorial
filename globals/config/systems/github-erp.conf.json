@@ -1,5 +1,5 @@
 {
   "_id": "github-erp",
   "type": "system:url",
-  "url_pattern": "https://raw.githubusercontent.com/sesam-io/tutorial/globals/globals/erp/%s"
+  "url_pattern": "https://raw.githubusercontent.com/sesam-io/tutorial/master/globals/data/erp/%s"
 }
