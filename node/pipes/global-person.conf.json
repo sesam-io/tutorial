@@ -1,0 +1,43 @@
+{
+  "_id": "global-person",
+  "type": "pipe",
+  "source": {
+    "type": "merge",
+    "datasets": ["postgresql-customer pgc", "firebase-customer fbc", "azure-person azp"],
+    "equality": [
+      ["eq", "azp.EmailAddress", "fbc.EmailAddress"],
+      ["eq", "azp.Birthday", "pgc.personalno"]
+    ],
+    "identity": "first",
+    "strategy": "compact",
+    "version": 2
+  },
+  "transform": [{
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["comment",
+          ["apply-hops", "orders", {
+            "datasets": ["global-order gor"],
+            "where": [
+              ["eq", "_S.$ids", "gor.customer_id"]
+            ]
+          }]
+        ],
+        ["comment", "order_count",
+          ["sum", "_T.items.quantity"]
+        ],
+        ["comment", "name",
+          ["concat",
+            ["list", "_S.GivenName", " ", "_S.MiddleInitial", ".", " ", "_S.Surname"]
+          ]
+        ],
+        ["add", "isOver21",
+          ["gt", "_S.age", 21]
+        ]
+      ]
+    }
+  }],
+  "namespaced_identifiers": true
+}

@@ -1,0 +1,30 @@
+{
+  "_id": "ehelsepoc-dodsfall",
+  "type": "pipe",
+  "source": {
+    "type": "sql",
+    "system": "ehelse",
+    "primary_key": ["id"],
+    "table": "dodsfall"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "rdf:type",
+          ["ni", "fhi", "Dodsfall"]
+        ],
+        ["add", "_id", "_S.Fodselsnummer"],
+        ["make-ni", "fhi-fodsel", "Fodselsnummer"],
+        ["make-ni", "location", "Postnummer"]
+      ]
+    }
+  },
+  "pump": {
+    "cron_expression": "0 0 1 * ?"
+  },
+  "namespaces": {
+    "identity": "fhi-dodsfall"
+  }
+}

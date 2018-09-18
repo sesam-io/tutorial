@@ -1,0 +1,8 @@
+{
+  "_id": "postgresql",
+  "type": "system:postgresql",
+  "database": "kglmtxcs",
+  "host": "horton.elephantsql.com",
+  "password": "yZ6-1R7JaSNv0wVAhNYgfGDK8AUBWRRF",
+  "username": "kglmtxcs"
+}

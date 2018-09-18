@@ -1,0 +1,23 @@
+{
+  "_id": "postgresql-customer",
+  "type": "pipe",
+  "source": {
+    "type": "sql",
+    "system": "postgresql",
+    "table": "customer"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "rdf:type",
+          ["ni", "postgresql:Customer"]
+        ]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  }
+}

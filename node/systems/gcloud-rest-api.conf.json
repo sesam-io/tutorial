@@ -1,0 +1,16 @@
+{
+  "_id": "gcloud-rest-api",
+  "type": "system:rest",
+  "connect_timeout": 30,
+  "operations": {
+    "push": {
+      "headers": {
+        "Content-type": "application/json"
+      },
+      "method": "POST",
+      "payload-type": "json",
+      "url": "pubsub/push?token=b2ccc58937eead906bae12e90415c820b9b4f25f"
+    }
+  },
+  "url_pattern": "https://sesamtraining-209410.appspot.com"
+}

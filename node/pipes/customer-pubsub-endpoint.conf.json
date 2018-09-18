@@ -1,0 +1,63 @@
+{
+  "_id": "customer-pubsub-endpoint",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "customer-pubsub"
+  },
+  "sink": {
+    "type": "rest",
+    "system": "gcloud-rest-api"
+  },
+  "transform": [{
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "customer-pubsub:payload"]
+      ]
+    }
+  }, {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["add", "operation", "push"],
+        ["add", "payload",
+          ["dict", "message",
+            ["apply", "payload", "_S.customer-pubsub:payload"]
+          ]
+        ],
+        ["comment", "payload",
+          ["dict", "message",
+            ["dict", "data",
+              ["values",
+                ["apply", "payload", "_S.customer-pubsub:payload"]
+              ]
+            ]
+          ]
+        ]
+      ],
+      "payload": [
+        ["add", "data",
+          ["base64-encode",
+            ["bytes",
+              ["concat", "Name:", "_S.customer-pubsub:name", " Age:",
+                ["string", "_S.customer-pubsub:customer-age"], " Order-count:",
+                ["string", "_S.customer-pubsub:order-count"]
+              ]
+            ]
+          ]
+        ],
+        ["add", "decoded-data",
+          ["string",
+            ["base64-decode", "_T.data"]
+          ]
+        ]
+      ]
+    }
+  }],
+  "pump": {
+    "cron_expression": "0 0 1 1 ?"
+  },
+  "add_namespaces": false,
+  "namespaced_identifiers": false
+}

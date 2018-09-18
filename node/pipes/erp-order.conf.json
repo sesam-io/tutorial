@@ -15,13 +15,13 @@
       "test": {
         "type": "embedded",
         "entities": [{
-          "_id": "erp-order:1000",
+          "_id": "erp-order:1003",
           "erp-order:customer_id": "~:erp-customer:10",
           "erp-order:discount": "~f4.2",
           "erp-order:items": [{
             "ean": "978-1852493110",
             "price": "~f22.1",
-            "quantity": 2
+            "quantity": 5
           }]
         }, {
           "_id": "erp-order:1001",
@@ -47,5 +47,8 @@
       }
     },
     "condition": "$ENV(node-env)"
+  },
+  "pump": {
+    "cron_expression": "0 0 1 1 ?"
   }
 }

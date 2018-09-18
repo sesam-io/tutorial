@@ -1,0 +1,16 @@
+{
+  "_id": "azure-person",
+  "type": "pipe",
+  "source": {
+    "type": "csv",
+    "system": "sesam-datasource-azure",
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "primary_key": "Birthday",
+    "url": "/file/sesam-training/data/test_people_sesam_training1.csv"
+  },
+  "pump": {
+    "cron_expression": "0 0 1 1 ?"
+  },
+  "namespaced_identifiers": true
+}

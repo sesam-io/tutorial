@@ -1,0 +1,27 @@
+{
+  "_id": "difi-postnummer",
+  "type": "pipe",
+  "source": {
+    "type": "csv",
+    "system": "datahotel",
+    "delimiter": ";",
+    "primary_key": "postnummer",
+    "url": "postnummer"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["make-ni", "location", "postnummer"],
+        ["make-ni", "location", "kommunenummer"],
+        ["add", "rdf:type",
+          ["ni", "location", "postnummer"]
+        ]
+      ]
+    }
+  },
+  "pump": {
+    "cron_expression": "0 23 * * *"
+  }
+}

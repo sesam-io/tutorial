@@ -16,13 +16,22 @@
         "type": "embedded",
         "entities": [{
           "_id": "erp-customer:11",
+          "erp-customer:age": 45,
           "erp-customer:company_id": "JSM"
         }, {
+          "_id": "erp-customer:10",
+          "erp-customer:age": 32,
+          "erp-customer:company_id": "PCU"
+        }, {
           "_id": "erp-customer:12",
+          "erp-customer:age": 20,
           "erp-customer:company_id": "MHA"
         }]
       }
     },
     "condition": "$ENV(node-env)"
+  },
+  "pump": {
+    "cron_expression": "0 0 1 1 ?"
   }
 }
