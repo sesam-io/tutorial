@@ -1,0 +1,76 @@
+{
+  "_id": "crm-customer",
+  "type": "pipe",
+  "source": {
+    "type": "conditional",
+    "alternatives": {
+      "github": {
+        "type": "json",
+        "system": "github-crm",
+        "url": "crm-customers.json"
+      },
+      "push": {
+        "type": "http_endpoint"
+      },
+      "test": {
+        "type": "embedded",
+        "entities": [{
+          "_id": "crm-customer:1",
+          "crm-customer:Birthday": "02023688018",
+          "crm-customer:City": "BEKKESTUA",
+          "crm-customer:Country": "NO",
+          "crm-customer:EmailAddress": "IsakEikeland@teleworm.us",
+          "crm-customer:Gender": "male",
+          "crm-customer:GivenName": "Isak",
+          "crm-customer:MiddleInitial": "E",
+          "crm-customer:Number": "100",
+          "crm-customer:Password": "ahquu9aFuuG",
+          "crm-customer:StreetAddress": "Nadderudåsen 186",
+          "crm-customer:Surname": "Eikeland",
+          "crm-customer:Title": "Mr.",
+          "crm-customer:Username": "Mays1944",
+          "crm-customer:ZipCode": "1357",
+          "crm-customer:company_id": "JSM"
+        }, {
+          "_id": "crm-customer:2",
+          "crm-customer:Birthday": "27035223852",
+          "crm-customer:City": "HEIMDAL",
+          "crm-customer:Country": "NO",
+          "crm-customer:EmailAddress": "SebastianSkjold@dayrep.com",
+          "crm-customer:Gender": "male",
+          "crm-customer:GivenName": "Sebastian",
+          "crm-customer:MiddleInitial": "T",
+          "crm-customer:Number": "99",
+          "crm-customer:Password": "fahmu7Vie3oh",
+          "crm-customer:StreetAddress": "Sommerfjøsvegen 143",
+          "crm-customer:Surname": "Skjold",
+          "crm-customer:Title": "Mr.",
+          "crm-customer:Username": "Theimence",
+          "crm-customer:ZipCode": "7089",
+          "crm-customer:company_id": "MHA"
+        }, {
+          "_id": "crm-customer:3",
+          "Scrm-customer:treetAddress": "Plommedalsveien 65",
+          "crm-customer:Birthday": "07106921805",
+          "crm-customer:City": "VOLLEN",
+          "crm-customer:Country": "NO",
+          "crm-customer:EmailAddress": "MajaSrli@rhyta.com",
+          "crm-customer:Gender": "female",
+          "crm-customer:GivenName": "Maja",
+          "crm-customer:MiddleInitial": "B",
+          "crm-customer:Number": "97",
+          "crm-customer:Password": "nei1jauGaem",
+          "crm-customer:Surname": "Sørli",
+          "crm-customer:Title": "Ms.",
+          "crm-customer:Username": "Camem1953",
+          "crm-customer:ZipCode": "1390",
+          "crm-customer:company_id": "PCU"
+        }]
+      }
+    },
+    "condition": "$ENV(node-env)"
+  },
+  "pump": {
+    "cron_expression": "0 0 1 1 ?"
+  }
+}

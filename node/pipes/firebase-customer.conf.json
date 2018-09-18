@@ -1,0 +1,23 @@
+{
+  "_id": "firebase-customer",
+  "type": "pipe",
+  "source": {
+    "type": "json",
+    "system": "firebase",
+    "url": "/"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "rdf:type",
+          ["ni", "firebase:Customer"]
+        ]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  }
+}

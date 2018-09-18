@@ -1,0 +1,8 @@
+{
+  "_id": "ehelse",
+  "type": "system:mssql",
+  "database": "ehelsepoc",
+  "host": "ehelsepoc.database.windows.net",
+  "password": "dbaadmin_1",
+  "username": "dbadmin@ehelsepoc"
+}

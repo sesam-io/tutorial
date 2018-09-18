@@ -1,0 +1,21 @@
+{
+  "_id": "vip-customer-crm",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "global-customerv2"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "_id", "_S.crm-customer:id"],
+        ["add", "is-vip",
+          ["gte", "_S.order_count", 2]
+        ]
+      ]
+    }
+  },
+  "namespaced_identifiers": true
+}

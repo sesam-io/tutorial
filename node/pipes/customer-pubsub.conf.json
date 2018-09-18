@@ -1,0 +1,32 @@
+{
+  "_id": "customer-pubsub",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "global-customer"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "operation", "push"],
+        ["add", "payload",
+          ["apply", "push", "_S."]
+        ]
+      ],
+      "push": [
+        ["add", "customer-age", "_S.age"],
+        ["add", "company-id", "_S.erp-customer:company_id"],
+        ["add", "name",
+          ["concat", "_S.first_name", " ", "_S.last_name"]
+        ],
+        ["add", "order-count", "_S.order_count"]
+      ]
+    }
+  },
+  "pump": {
+    "cron_expression": "0 0 1 1 ?"
+  },
+  "namespaced_identifiers": true
+}
