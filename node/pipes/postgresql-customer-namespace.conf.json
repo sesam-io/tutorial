@@ -1,10 +1,9 @@
 {
-  "_id": "firebase-customer",
+  "_id": "postgresql-customer-namespace",
   "type": "pipe",
   "source": {
-    "type": "json",
-    "system": "firebase",
-    "url": "/"
+    "type": "dataset",
+    "dataset": "marie-postgresql-customer"
   },
   "transform": {
     "type": "dtl",
@@ -12,12 +11,9 @@
       "default": [
         ["copy", "*"],
         ["add", "rdf:type",
-          ["ni", "firebase:Customer"]
+          ["ni", "marie-postgresql-customer"]
         ]
       ]
     }
-  },
-  "pump": {
-    "mode": "manual"
   }
 }

@@ -1,9 +1,9 @@
 {
-  "_id": "postgresql-customer",
+  "_id": "lesson-2",
   "type": "pipe",
   "source": {
     "type": "sql",
-    "system": "postgresql",
+    "system": "crm",
     "table": "customer"
   },
   "transform": {
@@ -12,7 +12,7 @@
       "default": [
         ["copy", "*"],
         ["add", "rdf:type",
-          ["ni", "postgresql:Customer"]
+          ["ni", "Crm-person"]
         ]
       ]
     }

@@ -1,0 +1,51 @@
+{
+  "_id": "lesson-5",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "lesson-4"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["filter",
+          ["is-not-empty", "_S.personalno"]
+        ],
+        ["merge",
+          ["apply-hops", "base", {
+            "datasets": ["difi-postnummer dps"],
+            "where": [
+              ["or",
+                ["eq", "_S.zipcode", "dps.postnummer"],
+                ["eq", "_S.ZipCode", "dps.postnummer"]
+              ]
+            ]
+          }]
+        ],
+        ["comment",
+          ["apply-hops", "bar", {
+            "datasets": ["difi-postnummer dip"],
+            "where": [
+              ["or",
+                ["eq", "_S.zipcode", "dip.postnummer"],
+                ["eq", "_S.ZipCode", "dip.postnummer"]
+              ]
+            ]
+          }]
+        ],
+        ["add", "fullname",
+          ["concat", "_S.firstname", " ", "_S.middlename", ". ", "_S.lastname"]
+        ],
+        ["remove", "firebase-person:*"],
+        ["remove", "azure-person:*"],
+        ["remove", "rdf:type"]
+      ],
+      "base": [
+        ["add", "municipality", "_S.kommunenavn"],
+        ["add", "city", "_S.poststed"]
+      ]
+    }
+  }
+}

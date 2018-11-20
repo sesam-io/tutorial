@@ -1,0 +1,37 @@
+{
+  "_id": "lesson-4",
+  "type": "pipe",
+  "source": {
+    "type": "merge",
+    "datasets": ["lesson-2 ls2", "firebase-person fbp", "azure-person azp"],
+    "equality": [
+      ["eq", "azp.Birthday", "ls2.personalno"],
+      ["eq", "azp.EmailAddress", "fbp.EmailAddress"]
+    ],
+    "identity": "first",
+    "strategy": "compact",
+    "version": 2
+  },
+  "transform": [{
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "zipcode", "_S.lesson-2:zipcode"],
+        ["add", "firstname", "_S.givenname"],
+        ["add", "middlename", "_S.middleinitial"],
+        ["add", "lastname", "_S.surname"],
+        ["add", "personalnumber",
+          ["coalesce",
+            ["list", "_S.personalno", "_S.azure-person:Birthday"]
+          ]
+        ],
+        ["add", "email",
+          ["coalesce",
+            ["list", "_S.azure-person:EmailAddress", "_S.lesson-2:emailaddress", "_S.firebase-person:EmailAddress"]
+          ]
+        ]
+      ]
+    }
+  }]
+}

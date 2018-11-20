@@ -3,6 +3,6 @@
   "type": "system:postgresql",
   "database": "kglmtxcs",
   "host": "horton.elephantsql.com",
-  "password": "yZ6-1R7JaSNv0wVAhNYgfGDK8AUBWRRF",
-  "username": "kglmtxcs"
+  "password": "reZ8646w4zOjLHhLDKt0KVqomoWcPwhG",
+  "username": "$ENV(postgresql-username)"
 }

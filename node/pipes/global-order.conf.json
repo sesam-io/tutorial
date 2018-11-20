@@ -1,8 +1,0 @@
-{
-  "_id": "global-order",
-  "type": "pipe",
-  "source": {
-    "type": "dataset",
-    "dataset": "erp-order"
-  }
-}

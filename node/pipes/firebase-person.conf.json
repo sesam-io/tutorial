@@ -1,0 +1,21 @@
+{
+  "_id": "firebase-person",
+  "type": "pipe",
+  "source": {
+    "type": "json",
+    "system": "firebase",
+    "url": "/"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["remove", "Password"]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  }
+}

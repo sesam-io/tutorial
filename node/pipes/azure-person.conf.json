@@ -4,13 +4,22 @@
   "source": {
     "type": "csv",
     "system": "sesam-datasource-azure",
+    "blacklist": ["Password"],
     "delimiter": ",",
     "encoding": "utf-8",
     "primary_key": "Birthday",
     "url": "/file/sesam-training/data/test_people_sesam_training1.csv"
   },
-  "pump": {
-    "cron_expression": "0 0 1 1 ?"
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["remove", "City"]
+      ]
+    }
   },
-  "namespaced_identifiers": true
+  "pump": {
+    "cron_expression": "0 * * * ?"
+  }
 }

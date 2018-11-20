@@ -1,0 +1,20 @@
+{
+  "_id": "crm-person",
+  "type": "pipe",
+  "source": {
+    "type": "sql",
+    "system": "crm",
+    "table": "customer"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  }
+}

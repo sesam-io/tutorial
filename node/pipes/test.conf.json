@@ -1,0 +1,20 @@
+{
+  "_id": "test",
+  "type": "pipe",
+  "source": {
+    "type": "sql",
+    "system": "gabriell-crm",
+    "table": "customer"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"]
+      ]
+    }
+  },
+  "pump": {
+    "cron_expression": "0 0 * * ?"
+  }
+}
