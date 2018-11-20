@@ -1,8 +1,0 @@
-{
-  "_id": "postgresql",
-  "type": "system:postgresql",
-  "database": "kglmtxcs",
-  "host": "horton.elephantsql.com",
-  "password": "reZ8646w4zOjLHhLDKt0KVqomoWcPwhG",
-  "username": "$ENV(postgresql-username)"
-}
