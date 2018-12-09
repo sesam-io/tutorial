@@ -4,7 +4,7 @@
   "source": {
     "type": "sql",
     "system": "crm",
-    "table": "customer"
+    "table": "users"
   },
   "transform": {
     "type": "dtl",

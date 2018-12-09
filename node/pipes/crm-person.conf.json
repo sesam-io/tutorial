@@ -4,15 +4,8 @@
   "source": {
     "type": "sql",
     "system": "crm",
-    "table": "customer"
-  },
-  "transform": {
-    "type": "dtl",
-    "rules": {
-      "default": [
-        ["copy", "*"]
-      ]
-    }
+    "primary_key": "Customerid",
+    "table": "users"
   },
   "pump": {
     "mode": "manual"

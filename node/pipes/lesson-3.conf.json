@@ -5,11 +5,10 @@
     "type": "merge",
     "datasets": ["lesson-2 ls2", "firebase-person fbp", "azure-person azp"],
     "equality": [
-      ["eq", "ls2.personalno", "azp.Birthday"],
+      ["eq", "ls2.Personalnummer", "azp.Birthday"],
       ["eq", "azp.EmailAddress", "fbp.EmailAddress"]
     ],
     "identity": "first",
-    "strategy": "compact",
     "version": 2
   },
   "transform": [{
