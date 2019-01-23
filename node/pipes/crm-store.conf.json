@@ -1,0 +1,24 @@
+{
+  "_id": "crm-store",
+  "type": "pipe",
+  "source": {
+    "type": "sql",
+    "system": "crm",
+    "primary_key": "SerialNumber",
+    "table": "storedetails"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "rdf:type",
+          ["ni", "crm", "store"]
+        ]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  }
+}

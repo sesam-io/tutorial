@@ -1,0 +1,76 @@
+{
+  "_id": "crm-store-zipfix",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "crm-store"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "new-zip-code",
+          ["if",
+            ["is-not-null", "_S.StoreZip"],
+            ["if",
+              ["eq", 3,
+                ["length",
+                  ["string", "_S.StoreZip"]
+                ]
+              ],
+              ["concat", "0",
+                ["string", "_S.StoreZip"]
+              ],
+              ["string", "_S.StoreZip"]
+            ],
+            ["string", "0000"]
+          ]
+        ],
+        ["add", "difi-info",
+          ["apply-hops", "location", {
+            "datasets": ["difi-postnummer dp"],
+            "where": [
+              ["eq",
+                ["if",
+                  ["is-not-null", "_S.StoreZip"],
+                  ["if",
+                    ["eq", 3,
+                      ["length",
+                        ["string", "_S.StoreZip"]
+                      ]
+                    ],
+                    ["concat", "0",
+                      ["string", "_S.StoreZip"]
+                    ],
+                    ["string", "_S.StoreZip"]
+                  ],
+                  ["string", "_S.StoreZip"]
+                ], "dp.postnummer"]
+            ]
+          }]
+        ],
+        ["add", "post",
+          ["last",
+            ["values",
+              ["first", "_T.crm-store-zipfix:difi-info"]
+            ]
+          ]
+        ],
+        ["remove", "StoreZip"],
+        ["remove", "crm-store-zipfix:difi-info"]
+      ],
+      "location": [
+        ["copy", "rdf:type"],
+        ["copy", "poststed"],
+        ["copy", "kommunenavn"],
+        ["add", "post",
+          ["concat",
+            ["list", "_S.difi-postnummer:postnummer", ", ", "_S.difi-postnummer:poststed", ", ", "_S.difi-postnummer:kommunenavn"]
+          ]
+        ]
+      ]
+    }
+  },
+  "remove_namespaces": true
+}

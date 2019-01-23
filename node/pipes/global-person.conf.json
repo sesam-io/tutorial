@@ -3,41 +3,18 @@
   "type": "pipe",
   "source": {
     "type": "merge",
-    "datasets": ["postgresql-customer pgc", "firebase-customer fbc", "azure-person azp"],
+    "datasets": ["crm-person cp", "azure-person ap", "firebase-person fp"],
     "equality": [
-      ["eq", "azp.EmailAddress", "fbc.EmailAddress"],
-      ["eq", "azp.Birthday", "pgc.personalno"]
-    ],
-    "identity": "first",
-    "strategy": "compact",
-    "version": 2
+      ["eq", "cp.EmailAddress", "ap.EmailAddress"],
+      ["eq", "cp.EmailAddress", "fp.EmailAddress"]
+    ]
   },
-  "transform": [{
+  "transform": {
     "type": "dtl",
     "rules": {
       "default": [
-        ["copy", "*"],
-        ["comment",
-          ["apply-hops", "orders", {
-            "datasets": ["global-order gor"],
-            "where": [
-              ["eq", "_S.$ids", "gor.customer_id"]
-            ]
-          }]
-        ],
-        ["comment", "order_count",
-          ["sum", "_T.items.quantity"]
-        ],
-        ["comment", "name",
-          ["concat",
-            ["list", "_S.GivenName", " ", "_S.MiddleInitial", ".", " ", "_S.Surname"]
-          ]
-        ],
-        ["add", "isOver21",
-          ["gt", "_S.age", 21]
-        ]
+        ["copy", "*"]
       ]
     }
-  }],
-  "namespaced_identifiers": true
+  }
 }

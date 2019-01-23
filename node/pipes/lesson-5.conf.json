@@ -10,15 +10,12 @@
     "rules": {
       "default": [
         ["copy", "*"],
-        ["filter",
-          ["is-not-empty", "_S.personalno"]
-        ],
-        ["merge",
-          ["apply-hops", "base", {
+        ["add", "address-data",
+          ["hops", {
             "datasets": ["difi-postnummer dps"],
             "where": [
               ["or",
-                ["eq", "_S.zipcode", "dps.postnummer"],
+                ["eq", "_S.Postalcode", "dps.postnummer"],
                 ["eq", "_S.ZipCode", "dps.postnummer"]
               ]
             ]
@@ -42,7 +39,7 @@
         ["remove", "azure-person:*"],
         ["remove", "rdf:type"]
       ],
-      "base": [
+      "postnr": [
         ["add", "municipality", "_S.kommunenavn"],
         ["add", "city", "_S.poststed"]
       ]
