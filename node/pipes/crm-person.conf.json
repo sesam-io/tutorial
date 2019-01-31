@@ -4,12 +4,6 @@
   "source": {
     "type": "conditional",
     "alternatives": {
-      "0original:": {
-        "type": "sql",
-        "system": "crm",
-        "primary_key": "Customerid",
-        "table": "users"
-      },
       "hardcoded": {
         "type": "embedded",
         "entities": [{
@@ -1213,9 +1207,15 @@
           "PostalCode": "7089",
           "Username": "Theimence"
         }]
+      },
+      "original:": {
+        "type": "sql",
+        "system": "crm",
+        "primary_key": "Customerid",
+        "table": "users"
       }
     },
-    "condition": "$ENV(crm-person:0original-or-hardcoded)"
+    "condition": "$ENV(crm-person:original-or-hardcoded)"
   },
   "transform": {
     "type": "dtl",

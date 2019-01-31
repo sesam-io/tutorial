@@ -1,0 +1,37 @@
+{
+  "_id": "user-consents",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "global-person"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["comment", "First rule inside 'hops->where': to connect users, second rule to only connect those who have agreed"],
+        ["add", "consents",
+          ["hops", {
+            "datasets": ["salesforce-consent sfc"],
+            "where": [
+              ["and",
+                ["eq", "_S.salesforce-userprofile:Username", "sfc.Username"],
+                ["eq", "sfc.HasConsented", true]
+              ]
+            ]
+          }]
+        ],
+        ["filter",
+          ["is-not-empty", "_T.consents"]
+        ]
+      ]
+    }
+  },
+  "pump": {
+    "cron_expression": "0 0 1 1 ?"
+  },
+  "metadata": {
+    "tags": ["consent"]
+  }
+}

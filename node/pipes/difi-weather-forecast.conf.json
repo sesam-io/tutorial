@@ -1,0 +1,31 @@
+{
+  "_id": "difi-weather-forecast",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "difi-postnummer"
+  },
+  "transform": {
+    "type": "chained",
+    "transforms": [{
+      "type": "dtl",
+      "rules": {
+        "default": [
+          ["copy", "*"]
+        ]
+      }
+    }, {
+      "type": "http",
+      "system": "weather-forecast",
+      "batch_size": 1,
+      "url": "/get"
+    }, {
+      "type": "dtl",
+      "rules": {
+        "default": [
+          ["copy", "*"]
+        ]
+      }
+    }]
+  }
+}

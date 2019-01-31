@@ -1,0 +1,13 @@
+{
+  "_id": "weather-forecast",
+  "type": "system:microservice",
+  "docker": {
+    "environment": {
+      "appid": "$SECRET(weather-forecast-apikey)",
+      "baseurl": "$ENV(weather-forecast-baseurl)"
+    },
+    "image": "4hlberg/weather-forcast-training:latest",
+    "port": 5000
+  },
+  "verify_ssl": true
+}

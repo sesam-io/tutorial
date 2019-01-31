@@ -10,6 +10,7 @@
     "rules": {
       "default": [
         ["copy", "*"],
+        ["comment", "this code goes through and checks if the zipcode has been wrongly stripped of a leading zero, if that is the case, then it adds it back"],
         ["add", "new-zip-code",
           ["if",
             ["is-not-null", "_S.StoreZip"],
@@ -27,7 +28,9 @@
             ["string", "0000"]
           ]
         ],
-        ["add", "difi-info",
+        ["comment", "this block checks if the corrected zip-code corresponds to a zipcode in difi-postnummer", "the if blocks goes through and checks if the zipcode has been wrongly stripped of a leading zero and makes sure that wont affect the equality"],
+        ["comment", "then it makes an apply-hop to difi-postnummer to get the variable post back"],
+        ["merge",
           ["apply-hops", "location", {
             "datasets": ["difi-postnummer dp"],
             "where": [
@@ -50,27 +53,17 @@
             ]
           }]
         ],
-        ["add", "post",
-          ["last",
-            ["values",
-              ["first", "_T.crm-store-zipfix:difi-info"]
-            ]
-          ]
-        ],
         ["remove", "StoreZip"],
-        ["remove", "crm-store-zipfix:difi-info"]
+        ["comment", "crm-store-zipfix:difi-info"]
       ],
       "location": [
-        ["copy", "rdf:type"],
-        ["copy", "poststed"],
-        ["copy", "kommunenavn"],
-        ["add", "post",
+        ["comment", "combines postnummer, poststed and kommunenavn to one string"],
+        ["add", "post-info",
           ["concat",
             ["list", "_S.difi-postnummer:postnummer", ", ", "_S.difi-postnummer:poststed", ", ", "_S.difi-postnummer:kommunenavn"]
           ]
         ]
       ]
     }
-  },
-  "remove_namespaces": true
+  }
 }

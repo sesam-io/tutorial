@@ -3,17 +3,33 @@
   "type": "pipe",
   "source": {
     "type": "merge",
-    "datasets": ["crm-person cp", "azure-person ap", "firebase-person fp"],
+    "datasets": ["crm-person cp", "azure-person ap", "firebase-person fp", "salesforce-userprofile sup"],
     "equality": [
       ["eq", "cp.EmailAddress", "ap.EmailAddress"],
-      ["eq", "cp.EmailAddress", "fp.EmailAddress"]
-    ]
+      ["eq", "cp.EmailAddress", "fp.EmailAddress"],
+      ["eq", "cp.Username", "sup.Username"]
+    ],
+    "identity": "first",
+    "version": 2
   },
   "transform": {
     "type": "dtl",
     "rules": {
       "default": [
-        ["copy", "*"]
+        ["copy", "*"],
+        ["merge",
+          ["apply-hops", "foobar", {
+            "datasets": ["difi-postnummer dip"],
+            "where": [
+              ["eq", "_S.ZipCode", "dip.postnummer"]
+            ]
+          }]
+        ],
+        ["add", "baz", "_T.foo.postnummer-ni"]
+      ],
+      "foobar": [
+        ["add", "Municipality", "_S.kommunenavn"],
+        ["add", "City", "_S.poststed"]
       ]
     }
   }

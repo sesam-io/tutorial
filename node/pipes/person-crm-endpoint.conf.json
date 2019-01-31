@@ -1,0 +1,22 @@
+{
+  "_id": "person-crm-endpoint",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "person-crm"
+  },
+  "sink": {
+    "type": "sql",
+    "system": "crm",
+    "primary_key": "customerid",
+    "table": "users_enriched"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"]
+      ]
+    }
+  }
+}
