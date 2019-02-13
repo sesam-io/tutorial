@@ -4,7 +4,16 @@
   "source": {
     "type": "conditional",
     "alternatives": {
-      "hardcoded": {
+      "original:": {
+        "type": "csv",
+        "system": "sesam-datasource-azure",
+        "blacklist": ["Password"],
+        "delimiter": ",",
+        "encoding": "utf-8",
+        "primary_key": "Birthday",
+        "url": "/file/sesam-training/data/test_people_sesam_training1.csv"
+      },
+      "test": {
         "type": "embedded",
         "entities": [{
           "_id": "23072451376",
@@ -1407,18 +1416,9 @@
           "Username": "Mays1944",
           "ZipCode": "1357"
         }]
-      },
-      "original:": {
-        "type": "csv",
-        "system": "sesam-datasource-azure",
-        "blacklist": ["Password"],
-        "delimiter": ",",
-        "encoding": "utf-8",
-        "primary_key": "Birthday",
-        "url": "/file/sesam-training/data/test_people_sesam_training1.csv"
       }
     },
-    "condition": "$ENV(azure-person:original-or-hardcoded)"
+    "condition": "$ENV(node-env)"
   },
   "transform": {
     "type": "dtl",

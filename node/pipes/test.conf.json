@@ -1,8 +1,0 @@
-{
-  "_id": "test",
-  "type": "pipe",
-  "source": {
-    "type": "dataset",
-    "dataset": "hf-global-person"
-  }
-}

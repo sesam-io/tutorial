@@ -4,7 +4,12 @@
   "source": {
     "type": "conditional",
     "alternatives": {
-      "hardcoded": {
+      "original:": {
+        "type": "json",
+        "system": "firebase",
+        "url": "/"
+      },
+      "test": {
         "type": "embedded",
         "entities": [{
           "_id": "23072451376",
@@ -1507,14 +1512,9 @@
           "Username": "Mays1944",
           "ZipCode": "4017"
         }]
-      },
-      "original:": {
-        "type": "json",
-        "system": "firebase",
-        "url": "/"
       }
     },
-    "condition": "$ENV(firebase-person:original-or-hardcoded)"
+    "condition": "$ENV(node-env)"
   },
   "transform": {
     "type": "dtl",

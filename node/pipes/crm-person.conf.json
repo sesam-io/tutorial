@@ -4,7 +4,13 @@
   "source": {
     "type": "conditional",
     "alternatives": {
-      "hardcoded": {
+      "original:": {
+        "type": "sql",
+        "system": "crm",
+        "primary_key": "Customerid",
+        "table": "users"
+      },
+      "test": {
         "type": "embedded",
         "entities": [{
           "_id": "1",
@@ -1207,15 +1213,9 @@
           "PostalCode": "7089",
           "Username": "Theimence"
         }]
-      },
-      "original:": {
-        "type": "sql",
-        "system": "crm",
-        "primary_key": "Customerid",
-        "table": "users"
       }
     },
-    "condition": "$ENV(crm-person:original-or-hardcoded)"
+    "condition": "$ENV(node-env)"
   },
   "transform": {
     "type": "dtl",

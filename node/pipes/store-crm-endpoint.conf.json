@@ -9,7 +9,6 @@
     "type": "sql",
     "system": "crm",
     "batch_size": 50,
-    "blacklist": ["type", "_hash", "_ts", "_previous", "_updated", "_deleted", "_id"],
     "bulk_operation_queue_size": 3,
     "bulk_operation_timeout": 600,
     "create_table_if_missing": true,
@@ -92,8 +91,7 @@
     "table": "storedetails_enriched",
     "timestamp": "time_added",
     "truncate_table_on_first_run": false,
-    "use_bulk_operations": false,
-    "whitelist": ["new-zip-code", "post", "Email", "SerialNumber", "StoreName", "Userid"]
+    "use_bulk_operations": false
   },
   "transform": {
     "type": "dtl",
