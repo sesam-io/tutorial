@@ -1,3 +1,4 @@
 {
-	"crm-user": "training_read_only@sesam.database.windows.net"
+	"crm-user": "training_read_only@sesam.database.windows.net",
+	"node-env": "test"
 }
