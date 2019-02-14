@@ -4,17 +4,11 @@
   "source": {
     "type": "conditional",
     "alternatives": {
-      "original:": {
-        "type": "json",
-        "system": "firebase",
-        "url": "/"
-      },
-      "test": {
+      "embedded": {
         "type": "embedded",
         "entities": [{
           "_id": "23072451376",
           "Country": "NO",
-          "EmailAddress": "HelenaFuglestad@einrot.com",
           "Gender": "male",
           "GivenName": "Torjus",
           "MiddleInitial": "M",
@@ -29,7 +23,6 @@
         }, {
           "_id": "09046987892",
           "Country": "NO",
-          "EmailAddress": "Lars@rhyta.com",
           "Gender": "male",
           "GivenName": "Lars",
           "MiddleInitial": "A",
@@ -44,7 +37,6 @@
         }, {
           "_id": "07033589977",
           "Country": "NO",
-          "EmailAddress": "MiaSaetra@superrito.com",
           "Gender": "male",
           "GivenName": "Dennis",
           "MiddleInitial": "L",
@@ -59,7 +51,6 @@
         }, {
           "_id": "14032975433",
           "Country": "NO",
-          "EmailAddress": "MariZielinski@gustr.com",
           "Gender": "female",
           "GivenName": "Emilie",
           "MiddleInitial": "T",
@@ -74,7 +65,6 @@
         }, {
           "_id": "20116430180",
           "Country": "NO",
-          "EmailAddress": "CamillaWilhelmsen@armyspy.com",
           "Gender": "male",
           "GivenName": "Jonas",
           "MiddleInitial": "E",
@@ -89,7 +79,6 @@
         }, {
           "_id": "03045865306",
           "Country": "NO",
-          "EmailAddress": "DavidTnder@einrot.com",
           "Gender": "female",
           "GivenName": "Martine",
           "MiddleInitial": "J",
@@ -104,7 +93,6 @@
         }, {
           "_id": "12062922598",
           "Country": "NO",
-          "EmailAddress": "EskilKristiansen@dayrep.com",
           "Gender": "male",
           "GivenName": "David",
           "MiddleInitial": "N",
@@ -119,7 +107,6 @@
         }, {
           "_id": "01112962070",
           "Country": "NO",
-          "EmailAddress": "BenjaminLarsen@superrito.com",
           "Gender": "female",
           "GivenName": "Julie",
           "MiddleInitial": "A",
@@ -134,7 +121,6 @@
         }, {
           "_id": "14085111225",
           "Country": "NO",
-          "EmailAddress": "LiveKarlsen@armyspy.com",
           "Gender": "female",
           "GivenName": "Erika",
           "MiddleInitial": "L",
@@ -149,7 +135,6 @@
         }, {
           "_id": "12052427741",
           "Country": "NO",
-          "EmailAddress": "TorjusSand@einrot.com",
           "Gender": "male",
           "GivenName": "Aleksander",
           "MiddleInitial": "M",
@@ -164,7 +149,6 @@
         }, {
           "_id": "19114455850",
           "Country": "NO",
-          "EmailAddress": "CelineSveen@einrot.com",
           "Gender": "female",
           "GivenName": "Sara",
           "MiddleInitial": "B",
@@ -179,7 +163,6 @@
         }, {
           "_id": "24057062155",
           "Country": "NO",
-          "EmailAddress": "SondreStorvik@superrito.com",
           "Gender": "female",
           "GivenName": "Cornelia",
           "MiddleInitial": "P",
@@ -194,7 +177,6 @@
         }, {
           "_id": "03102446917",
           "Country": "NO",
-          "EmailAddress": "EmmaAas@jourrapide.com",
           "Gender": "female",
           "GivenName": "Katinka",
           "MiddleInitial": "B",
@@ -209,7 +191,6 @@
         }, {
           "_id": "28044435335",
           "Country": "NO",
-          "EmailAddress": "Laurits@gustr.com",
           "Gender": "male",
           "GivenName": "Laurits",
           "MiddleInitial": "E",
@@ -224,7 +205,6 @@
         }, {
           "_id": "18112483943",
           "Country": "NO",
-          "EmailAddress": "InaJohansen@superrito.com",
           "Gender": "male",
           "GivenName": "Elias",
           "MiddleInitial": "M",
@@ -239,7 +219,6 @@
         }, {
           "_id": "23082347736",
           "Country": "NO",
-          "EmailAddress": "Tuva@gustr.com",
           "Gender": "female",
           "GivenName": "Tuva",
           "MiddleInitial": "K",
@@ -254,7 +233,6 @@
         }, {
           "_id": "01022985821",
           "Country": "NO",
-          "EmailAddress": "SebastianHansen@einrot.com",
           "Gender": "female",
           "GivenName": "Amalie",
           "MiddleInitial": "M",
@@ -269,7 +247,6 @@
         }, {
           "_id": "25066427258",
           "Country": "NO",
-          "EmailAddress": "KarolineNess@superrito.com",
           "Gender": "female",
           "GivenName": "Hannah",
           "MiddleInitial": "L",
@@ -284,7 +261,6 @@
         }, {
           "_id": "26083795297",
           "Country": "NO",
-          "EmailAddress": "AgnesHaugo@superrito.com",
           "Gender": "male",
           "GivenName": "Lucas",
           "MiddleInitial": "H",
@@ -299,7 +275,6 @@
         }, {
           "_id": "20094723254",
           "Country": "NO",
-          "EmailAddress": "EmilieHaland@fleckens.hu",
           "Gender": "female",
           "GivenName": "Celine",
           "MiddleInitial": "S",
@@ -314,7 +289,6 @@
         }, {
           "_id": "08093925620",
           "Country": "NO",
-          "EmailAddress": "JulieNordeng@gustr.com",
           "Gender": "male",
           "GivenName": "Cornelius",
           "MiddleInitial": "T",
@@ -329,7 +303,6 @@
         }, {
           "_id": "06064952809",
           "Country": "NO",
-          "EmailAddress": "MartinaStavland@superrito.com",
           "Gender": "female",
           "GivenName": "Silje",
           "MiddleInitial": "V",
@@ -344,7 +317,6 @@
         }, {
           "_id": "13052612148",
           "Country": "NO",
-          "EmailAddress": "AshildThoresen@dayrep.com",
           "Gender": "female",
           "GivenName": "Emilie",
           "MiddleInitial": "E",
@@ -359,7 +331,6 @@
         }, {
           "_id": "23114265220",
           "Country": "NO",
-          "EmailAddress": "Mathilde@jourrapide.com",
           "Gender": "female",
           "GivenName": "Mathilde",
           "MiddleInitial": "N",
@@ -374,7 +345,6 @@
         }, {
           "_id": "03036816460",
           "Country": "NO",
-          "EmailAddress": "AdrianRasmussen@rhyta.com",
           "Gender": "male",
           "GivenName": "Theo",
           "MiddleInitial": "O",
@@ -389,7 +359,6 @@
         }, {
           "_id": "28106260384",
           "Country": "NO",
-          "EmailAddress": "FredrikBrathen@superrito.com",
           "Gender": "male",
           "GivenName": "Johannes",
           "MiddleInitial": "I",
@@ -404,7 +373,6 @@
         }, {
           "_id": "23012520975",
           "Country": "NO",
-          "EmailAddress": "Emiliestby@jourrapide.com",
           "Gender": "male",
           "GivenName": "Markus",
           "MiddleInitial": "T",
@@ -419,7 +387,6 @@
         }, {
           "_id": "03092241196",
           "Country": "NO",
-          "EmailAddress": "KonradOmmundsen@jourrapide.com",
           "Gender": "female",
           "GivenName": "Åshild",
           "MiddleInitial": "O",
@@ -434,7 +401,6 @@
         }, {
           "_id": "28013484741",
           "Country": "NO",
-          "EmailAddress": "JakobLundh@teleworm.us",
           "Gender": "male",
           "GivenName": "Benjamin",
           "MiddleInitial": "S",
@@ -449,7 +415,6 @@
         }, {
           "_id": "10044647612",
           "Country": "NO",
-          "EmailAddress": "NathalieTorp@jourrapide.com",
           "Gender": "male",
           "GivenName": "Paul",
           "MiddleInitial": "J",
@@ -464,7 +429,6 @@
         }, {
           "_id": "27105614534",
           "Country": "NO",
-          "EmailAddress": "HannahBorgen@fleckens.hu",
           "Gender": "male",
           "GivenName": "Sondre",
           "MiddleInitial": "L",
@@ -479,7 +443,6 @@
         }, {
           "_id": "09072559583",
           "Country": "NO",
-          "EmailAddress": "AmalieJakobsen@rhyta.com",
           "Gender": "female",
           "GivenName": "Martina",
           "MiddleInitial": "S",
@@ -494,7 +457,6 @@
         }, {
           "_id": "11086031806",
           "Country": "NO",
-          "EmailAddress": "SebastianHansen@armyspy.com",
           "Gender": "female",
           "GivenName": "Nathalie",
           "MiddleInitial": "S",
@@ -509,7 +471,6 @@
         }, {
           "_id": "23124483485",
           "Country": "NO",
-          "EmailAddress": "TheoHaugen@armyspy.com",
           "Gender": "female",
           "GivenName": "Mari",
           "MiddleInitial": "J",
@@ -524,7 +485,6 @@
         }, {
           "_id": "15092691352",
           "Country": "NO",
-          "EmailAddress": "Emiliestby@superrito.com",
           "Gender": "male",
           "GivenName": "Adrian",
           "MiddleInitial": "V",
@@ -539,7 +499,6 @@
         }, {
           "_id": "26115324140",
           "Country": "NO",
-          "EmailAddress": "EmilEikeland@einrot.com",
           "Gender": "male",
           "GivenName": "Mathias",
           "MiddleInitial": "M",
@@ -554,7 +513,6 @@
         }, {
           "_id": "14052951189",
           "Country": "NO",
-          "EmailAddress": "EliasThomassen@fleckens.hu",
           "Gender": "female",
           "GivenName": "Amalie",
           "MiddleInitial": "S",
@@ -569,7 +527,6 @@
         }, {
           "_id": "13033142893",
           "Country": "NO",
-          "EmailAddress": "JesperDale@superrito.com",
           "Gender": "female",
           "GivenName": "Sara",
           "MiddleInitial": "S",
@@ -584,7 +541,6 @@
         }, {
           "_id": "18012711533",
           "Country": "NO",
-          "EmailAddress": "AmalieKristiansen@dayrep.com",
           "Gender": "female",
           "GivenName": "Kristine",
           "MiddleInitial": "L",
@@ -599,7 +555,6 @@
         }, {
           "_id": "16026928290",
           "Country": "NO",
-          "EmailAddress": "NathalieTorp@einrot.com",
           "Gender": "female",
           "GivenName": "Emma",
           "MiddleInitial": "S",
@@ -614,7 +569,6 @@
         }, {
           "_id": "03105464544",
           "Country": "NO",
-          "EmailAddress": "MarkusAndersen@einrot.com",
           "Gender": "male",
           "GivenName": "Mikael",
           "MiddleInitial": "S",
@@ -629,7 +583,6 @@
         }, {
           "_id": "06106469714",
           "Country": "NO",
-          "EmailAddress": "JohannesBratli@dayrep.com",
           "Gender": "female",
           "GivenName": "Madelen",
           "MiddleInitial": "M",
@@ -644,7 +597,6 @@
         }, {
           "_id": "27124926984",
           "Country": "NO",
-          "EmailAddress": "BenjaminLarsen@dayrep.com",
           "Gender": "female",
           "GivenName": "Meline",
           "MiddleInitial": "E",
@@ -659,7 +611,6 @@
         }, {
           "_id": "12113939086",
           "Country": "NO",
-          "EmailAddress": "Mari@fleckens.hu",
           "Gender": "female",
           "GivenName": "Mari",
           "MiddleInitial": "I",
@@ -674,7 +625,6 @@
         }, {
           "_id": "07065859618",
           "Country": "NO",
-          "EmailAddress": "KonradOmmundsen@gustr.com",
           "Gender": "female",
           "GivenName": "Silja",
           "MiddleInitial": "J",
@@ -689,7 +639,6 @@
         }, {
           "_id": "25055031848",
           "Country": "NO",
-          "EmailAddress": "IdaSchjlberg@fleckens.hu",
           "Gender": "female",
           "GivenName": "Pernille",
           "MiddleInitial": "S",
@@ -704,7 +653,6 @@
         }, {
           "_id": "23126740650",
           "Country": "NO",
-          "EmailAddress": "CamillaWilhelmsen@rhyta.com",
           "Gender": "male",
           "GivenName": "Kevin",
           "MiddleInitial": "M",
@@ -719,7 +667,6 @@
         }, {
           "_id": "15096612320",
           "Country": "NO",
-          "EmailAddress": "MartinaStavland@einrot.com",
           "Gender": "male",
           "GivenName": "Jakob",
           "MiddleInitial": "I",
@@ -734,7 +681,6 @@
         }, {
           "_id": "02013867955",
           "Country": "NO",
-          "EmailAddress": "TobiasSommervold@superrito.com",
           "Gender": "female",
           "GivenName": "Eline",
           "MiddleInitial": "E",
@@ -749,7 +695,6 @@
         }, {
           "_id": "24032920161",
           "Country": "NO",
-          "EmailAddress": "SaraTveiten@einrot.com",
           "Gender": "female",
           "GivenName": "Una",
           "MiddleInitial": "M",
@@ -764,7 +709,6 @@
         }, {
           "_id": "13103514260",
           "Country": "NO",
-          "EmailAddress": "OskarBirkeland@gustr.com",
           "Gender": "male",
           "GivenName": "Oskar",
           "MiddleInitial": "M",
@@ -779,7 +723,6 @@
         }, {
           "_id": "14093771024",
           "Country": "NO",
-          "EmailAddress": "InaJohansen@rhyta.com",
           "Gender": "female",
           "GivenName": "Ina",
           "MiddleInitial": "V",
@@ -794,7 +737,6 @@
         }, {
           "_id": "19105179412",
           "Country": "NO",
-          "EmailAddress": "EskilKristiansen@armyspy.com",
           "Gender": "male",
           "GivenName": "Eskil",
           "MiddleInitial": "M",
@@ -809,7 +751,6 @@
         }, {
           "_id": "26105058579",
           "Country": "NO",
-          "EmailAddress": "OdaJohansen@rhyta.com",
           "Gender": "female",
           "GivenName": "Oda",
           "MiddleInitial": "E",
@@ -824,7 +765,6 @@
         }, {
           "_id": "08106492952",
           "Country": "NO",
-          "EmailAddress": "EmilieHaland@superrito.com",
           "Gender": "female",
           "GivenName": "Emilie",
           "MiddleInitial": "O",
@@ -839,7 +779,6 @@
         }, {
           "_id": "16032528519",
           "Country": "NO",
-          "EmailAddress": "JohanPettersen@jourrapide.com",
           "Gender": "male",
           "GivenName": "Johan",
           "MiddleInitial": "O",
@@ -854,7 +793,6 @@
         }, {
           "_id": "03066348300",
           "Country": "NO",
-          "EmailAddress": "LeoRasmussen@fleckens.hu",
           "Gender": "male",
           "GivenName": "Leo",
           "MiddleInitial": "H",
@@ -869,7 +807,6 @@
         }, {
           "_id": "22066584479",
           "Country": "NO",
-          "EmailAddress": "ErikRnningen@gustr.com",
           "Gender": "male",
           "GivenName": "Erik",
           "MiddleInitial": "K",
@@ -884,7 +821,6 @@
         }, {
           "_id": "25066444069",
           "Country": "NO",
-          "EmailAddress": "IdaSchjlberg@gustr.com",
           "Gender": "female",
           "GivenName": "Ida",
           "MiddleInitial": "C",
@@ -899,7 +835,6 @@
         }, {
           "_id": "26105832830",
           "Country": "NO",
-          "EmailAddress": "JesperDale@cuvox.de",
           "Gender": "male",
           "GivenName": "Jesper",
           "MiddleInitial": "N",
@@ -914,7 +849,6 @@
         }, {
           "_id": "27087097414",
           "Country": "NO",
-          "EmailAddress": "MajaSteinsland@gustr.com",
           "Gender": "female",
           "GivenName": "Maja",
           "MiddleInitial": "J",
@@ -929,7 +863,6 @@
         }, {
           "_id": "26075485402",
           "Country": "NO",
-          "EmailAddress": "TobiasSommervold@gustr.com",
           "Gender": "male",
           "GivenName": "Tobias",
           "MiddleInitial": "S",
@@ -944,7 +877,6 @@
         }, {
           "_id": "13054543716",
           "Country": "NO",
-          "EmailAddress": "TheaMathisen@jourrapide.com",
           "Gender": "female",
           "GivenName": "Thea",
           "MiddleInitial": "A",
@@ -959,7 +891,6 @@
         }, {
           "_id": "24035233367",
           "Country": "NO",
-          "EmailAddress": "FredrikBrathen@gustr.com",
           "Gender": "male",
           "GivenName": "Fredrik",
           "MiddleInitial": "R",
@@ -974,7 +905,6 @@
         }, {
           "_id": "14022952568",
           "Country": "NO",
-          "EmailAddress": "EmilieBirkeland@fleckens.hu",
           "Gender": "female",
           "GivenName": "Emilie",
           "MiddleInitial": "S",
@@ -989,7 +919,6 @@
         }, {
           "_id": "28017084366",
           "Country": "NO",
-          "EmailAddress": "HelenaFuglestad@armyspy.com",
           "Gender": "female",
           "GivenName": "Helena",
           "MiddleInitial": "A",
@@ -1004,7 +933,6 @@
         }, {
           "_id": "10075146547",
           "Country": "NO",
-          "EmailAddress": "MariaBerg@superrito.com",
           "Gender": "female",
           "GivenName": "Maria",
           "MiddleInitial": "S",
@@ -1019,7 +947,6 @@
         }, {
           "_id": "02046824410",
           "Country": "NO",
-          "EmailAddress": "YaraMller@rhyta.com",
           "Gender": "female",
           "GivenName": "Yara",
           "MiddleInitial": "T",
@@ -1034,7 +961,6 @@
         }, {
           "_id": "06015381268",
           "Country": "NO",
-          "EmailAddress": "LotteMelhus@dayrep.com",
           "Gender": "female",
           "GivenName": "Lotte",
           "MiddleInitial": "O",
@@ -1049,7 +975,6 @@
         }, {
           "_id": "17046573791",
           "Country": "NO",
-          "EmailAddress": "EliseNornes@cuvox.de",
           "Gender": "female",
           "GivenName": "Elise",
           "MiddleInitial": "J",
@@ -1064,7 +989,6 @@
         }, {
           "_id": "27113155242",
           "Country": "NO",
-          "EmailAddress": "AgnesHaugo@dayrep.com",
           "Gender": "female",
           "GivenName": "Agnes",
           "MiddleInitial": "O",
@@ -1079,7 +1003,6 @@
         }, {
           "_id": "17114673499",
           "Country": "NO",
-          "EmailAddress": "EmilEikeland@armyspy.com",
           "Gender": "male",
           "GivenName": "Emil",
           "MiddleInitial": "T",
@@ -1094,7 +1017,6 @@
         }, {
           "_id": "05064951171",
           "Country": "NO",
-          "EmailAddress": "RuneWold@armyspy.com",
           "Gender": "male",
           "GivenName": "Rune",
           "MiddleInitial": "E",
@@ -1109,7 +1031,6 @@
         }, {
           "_id": "14032547069",
           "Country": "NO",
-          "EmailAddress": "WilliamFauske@jourrapide.com",
           "Gender": "male",
           "GivenName": "William",
           "MiddleInitial": "H",
@@ -1124,7 +1045,6 @@
         }, {
           "_id": "09112196657",
           "Country": "NO",
-          "EmailAddress": "SebastianHansen@cuvox.de",
           "Gender": "male",
           "GivenName": "Sebastian",
           "MiddleInitial": "M",
@@ -1139,7 +1059,6 @@
         }, {
           "_id": "10115759610",
           "Country": "NO",
-          "EmailAddress": "SimenSolli@jourrapide.com",
           "Gender": "male",
           "GivenName": "Simen",
           "MiddleInitial": "M",
@@ -1154,7 +1073,6 @@
         }, {
           "_id": "01065237389",
           "Country": "NO",
-          "EmailAddress": "SivertAsp@dayrep.com",
           "Gender": "male",
           "GivenName": "Sivert",
           "MiddleInitial": "N",
@@ -1169,7 +1087,6 @@
         }, {
           "_id": "21044240591",
           "Country": "NO",
-          "EmailAddress": "RubenOlsen@cuvox.de",
           "Gender": "male",
           "GivenName": "Ruben",
           "MiddleInitial": "I",
@@ -1184,7 +1101,6 @@
         }, {
           "_id": "24085726314",
           "Country": "NO",
-          "EmailAddress": "MiaSaetra@einrot.com",
           "Gender": "female",
           "GivenName": "Mia",
           "MiddleInitial": "F",
@@ -1199,7 +1115,6 @@
         }, {
           "_id": "16115430967",
           "Country": "NO",
-          "EmailAddress": "JulieAndersen@superrito.com",
           "Gender": "female",
           "GivenName": "Julie",
           "MiddleInitial": "I",
@@ -1214,7 +1129,6 @@
         }, {
           "_id": "22035964477",
           "Country": "NO",
-          "EmailAddress": "CamillaWilhelmsen@dayrep.com",
           "Gender": "female",
           "GivenName": "Camilla",
           "MiddleInitial": "M",
@@ -1229,7 +1143,6 @@
         }, {
           "_id": "07114411799",
           "Country": "NO",
-          "EmailAddress": "KasperAndersen@teleworm.us",
           "Gender": "male",
           "GivenName": "Kasper",
           "MiddleInitial": "H",
@@ -1244,7 +1157,6 @@
         }, {
           "_id": "01115892565",
           "Country": "NO",
-          "EmailAddress": "AnnaOlsen@rhyta.com",
           "Gender": "female",
           "GivenName": "Anna",
           "MiddleInitial": "F",
@@ -1259,7 +1171,6 @@
         }, {
           "_id": "20075945255",
           "Country": "NO",
-          "EmailAddress": "OleFrde@gustr.com",
           "Gender": "male",
           "GivenName": "Ole",
           "MiddleInitial": "I",
@@ -1274,7 +1185,6 @@
         }, {
           "_id": "16052554966",
           "Country": "NO",
-          "EmailAddress": "KasperOpdal@cuvox.de",
           "Gender": "male",
           "GivenName": "Kasper",
           "MiddleInitial": "M",
@@ -1289,7 +1199,6 @@
         }, {
           "_id": "18014936790",
           "Country": "NO",
-          "EmailAddress": "LiveKarlsen@dayrep.com",
           "Gender": "female",
           "GivenName": "Live",
           "MiddleInitial": "D",
@@ -1304,7 +1213,6 @@
         }, {
           "_id": "07064156059",
           "Country": "NO",
-          "EmailAddress": "KonradOmmundsen@fleckens.hu",
           "Gender": "male",
           "GivenName": "Konrad",
           "MiddleInitial": "A",
@@ -1319,7 +1227,6 @@
         }, {
           "_id": "26062440083",
           "Country": "NO",
-          "EmailAddress": "AuroraBjrkli@armyspy.com",
           "Gender": "female",
           "GivenName": "Aurora",
           "MiddleInitial": "E",
@@ -1334,7 +1241,6 @@
         }, {
           "_id": "25115430058",
           "Country": "NO",
-          "EmailAddress": "JulieAndersen@fleckens.hu",
           "Gender": "female",
           "GivenName": "Julie",
           "MiddleInitial": "W",
@@ -1349,7 +1255,6 @@
         }, {
           "_id": "26026727498",
           "Country": "NO",
-          "EmailAddress": "LucasLie@cuvox.de",
           "Gender": "male",
           "GivenName": "Lucas",
           "MiddleInitial": "T",
@@ -1364,7 +1269,6 @@
         }, {
           "_id": "19125622937",
           "Country": "NO",
-          "EmailAddress": "DavidBerntsen@superrito.com",
           "Gender": "male",
           "GivenName": "David",
           "MiddleInitial": "M",
@@ -1379,7 +1283,6 @@
         }, {
           "_id": "01085188884",
           "Country": "NO",
-          "EmailAddress": "EmilEie@superrito.com",
           "Gender": "male",
           "GivenName": "Emil",
           "MiddleInitial": "L",
@@ -1394,7 +1297,6 @@
         }, {
           "_id": "12032920177",
           "Country": "NO",
-          "EmailAddress": "CaspianNygard@einrot.com",
           "Gender": "male",
           "GivenName": "Caspian",
           "MiddleInitial": "I",
@@ -1409,7 +1311,6 @@
         }, {
           "_id": "17063184127",
           "Country": "NO",
-          "EmailAddress": "KarolineNess@fleckens.hu",
           "Gender": "female",
           "GivenName": "Karoline",
           "MiddleInitial": "E",
@@ -1424,7 +1325,6 @@
         }, {
           "_id": "09062573326",
           "Country": "NO",
-          "EmailAddress": "KristinAakvik@jourrapide.com",
           "Gender": "female",
           "GivenName": "Kristin",
           "MiddleInitial": "K",
@@ -1439,7 +1339,6 @@
         }, {
           "_id": "12084134580",
           "Country": "NO",
-          "EmailAddress": "HeleneEide@einrot.com",
           "Gender": "female",
           "GivenName": "Helene",
           "MiddleInitial": "K",
@@ -1454,7 +1353,6 @@
         }, {
           "_id": "07106921805",
           "Country": "NO",
-          "EmailAddress": "MajaSrli@rhyta.com",
           "Gender": "female",
           "GivenName": "Maja",
           "MiddleInitial": "B",
@@ -1469,7 +1367,6 @@
         }, {
           "_id": "12072298359",
           "Country": "NO",
-          "EmailAddress": "LotteHammer@armyspy.com",
           "Gender": "female",
           "GivenName": "Lotte",
           "MiddleInitial": "E",
@@ -1484,7 +1381,6 @@
         }, {
           "_id": "27035223852",
           "Country": "NO",
-          "EmailAddress": "SebastianSkjold@dayrep.com",
           "Gender": "male",
           "GivenName": "Sebastian",
           "MiddleInitial": "T",
@@ -1499,7 +1395,6 @@
         }, {
           "_id": "02023688018",
           "Country": "NO",
-          "EmailAddress": "IsakEikeland@teleworm.us",
           "Gender": "male",
           "GivenName": "Isak",
           "MiddleInitial": "E",
@@ -1511,6 +1406,155 @@
           "Title": "Mr.",
           "Username": "Mays1944",
           "ZipCode": "4017"
+        }]
+      },
+      "production:": {
+        "type": "json",
+        "system": "firebase",
+        "url": "/"
+      },
+      "test": {
+        "type": "embedded",
+        "entities": [{
+          "_id": "12052427741",
+          "Country": "NO",
+          "Gender": "male",
+          "GivenName": "Aleksander",
+          "MiddleInitial": "M",
+          "MoneyUsed": "1014",
+          "Number": "10",
+          "StreetAddress": "Drengs 36",
+          "Surname": "Ommundsen",
+          "TimesOrdered": "17",
+          "Title": "Mr.",
+          "Username": "Grale1949",
+          "ZipCode": "1390"
+        }, {
+          "_id": "09046987892",
+          "Country": "NO",
+          "Gender": "male",
+          "GivenName": "Lars",
+          "MiddleInitial": "A",
+          "MoneyUsed": "13798",
+          "Number": "2",
+          "StreetAddress": "Øvre 12",
+          "Surname": "Evjen",
+          "TimesOrdered": "3",
+          "Title": "Mr.",
+          "Username": "Wimen1979",
+          "ZipCode": "5239"
+        }, {
+          "_id": "07033589977",
+          "Country": "NO",
+          "Gender": "male",
+          "GivenName": "Dennis",
+          "MiddleInitial": "L",
+          "MoneyUsed": "15878",
+          "Number": "3",
+          "StreetAddress": "Gydas vei",
+          "Surname": "Olsen",
+          "TimesOrdered": "13",
+          "Title": "Mr.",
+          "Username": "Gotin1984",
+          "ZipCode": "5003"
+        }, {
+          "_id": "02023688018",
+          "Country": "NO",
+          "Gender": "male",
+          "GivenName": "Isak",
+          "MiddleInitial": "E",
+          "MoneyUsed": "19392",
+          "Number": "100",
+          "StreetAddress": "Frodegaten gate",
+          "Surname": "Eikeland",
+          "TimesOrdered": "16",
+          "Title": "Mr.",
+          "Username": "Mays1944",
+          "ZipCode": "4017"
+        }, {
+          "_id": "27035223852",
+          "Country": "NO",
+          "Gender": "male",
+          "GivenName": "Sebastian",
+          "MiddleInitial": "T",
+          "MoneyUsed": "13935",
+          "Number": "99",
+          "StreetAddress": "Kværnerveien 148",
+          "Surname": "Skjold",
+          "TimesOrdered": "18",
+          "Title": "Mr.",
+          "Username": "Theimence",
+          "ZipCode": "3732"
+        }, {
+          "_id": "12032920177",
+          "Country": "NO",
+          "Gender": "male",
+          "GivenName": "Caspian",
+          "MiddleInitial": "I",
+          "MoneyUsed": "11923",
+          "Number": "93",
+          "StreetAddress": "Lindøy Løkkavei",
+          "Surname": "Nygård",
+          "TimesOrdered": "12",
+          "Title": "Mr.",
+          "Username": "Aney1996",
+          "ZipCode": "2213"
+        }, {
+          "_id": "19125622937",
+          "Country": "NO",
+          "Gender": "male",
+          "GivenName": "David",
+          "MiddleInitial": "M",
+          "MoneyUsed": "4475",
+          "Number": "91",
+          "StreetAddress": "Hesjejordet 83",
+          "Surname": "Berntsen",
+          "TimesOrdered": "14",
+          "Title": "Mr.",
+          "Username": "Thret1941",
+          "ZipCode": "3739"
+        }, {
+          "_id": "26026727498",
+          "Country": "NO",
+          "Gender": "male",
+          "GivenName": "Lucas",
+          "MiddleInitial": "T",
+          "MoneyUsed": "2527",
+          "Number": "90",
+          "StreetAddress": "Storheia 10",
+          "Surname": "Lie",
+          "TimesOrdered": "18",
+          "Title": "Mr.",
+          "Username": "Briver",
+          "ZipCode": "3121"
+        }, {
+          "_id": "14085111225",
+          "Country": "NO",
+          "Gender": "female",
+          "GivenName": "Erika",
+          "MiddleInitial": "L",
+          "MoneyUsed": "4021",
+          "Number": "9",
+          "StreetAddress": "Tiurvegen vei",
+          "Surname": "Olsen",
+          "TimesOrdered": "1",
+          "Title": "Mrs.",
+          "Username": "Whavillat",
+          "ZipCode": "8657"
+        }, {
+          "_id": "22035964477",
+          "Country": "NO",
+          "Gender": "female",
+          "GivenName": "Camilla",
+          "MiddleInitial": "M",
+          "MoneyUsed": "17926",
+          "Number": "81",
+          "StreetAddress": "Stortuveien Solheims",
+          "Surname": "Wilhelmsen",
+          "TimesOrdered": "19",
+          "Title": "Ms.",
+          "Username": "Shenclace",
+          "ZipCode": "1385"
         }]
       }
     },
