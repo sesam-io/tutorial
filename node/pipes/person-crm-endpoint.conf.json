@@ -18,5 +18,8 @@
         ["copy", "*"]
       ]
     }
+  },
+  "pump": {
+    "mode": "manual"
   }
 }

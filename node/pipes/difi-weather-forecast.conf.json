@@ -2,30 +2,54 @@
   "_id": "difi-weather-forecast",
   "type": "pipe",
   "source": {
-    "type": "dataset",
-    "dataset": "difi-postnummer"
+    "type": "conditional",
+    "alternatives": {
+      "production": {
+        "type": "dataset",
+        "dataset": "difi-postnummer"
+      },
+      "test": {
+        "type": "embedded",
+        "entities": [{}]
+      }
+    },
+    "condition": "$ENV(node-env)"
   },
   "transform": {
-    "type": "chained",
-    "transforms": [{
-      "type": "dtl",
-      "rules": {
-        "default": [
-          ["copy", "*"]
-        ]
+    "type": "conditional",
+    "alternatives": {
+      "production": {
+        "type": "chained",
+        "transforms": [{
+          "type": "dtl",
+          "rules": {
+            "default": [
+              ["copy", "*"]
+            ]
+          }
+        }, {
+          "type": "http",
+          "system": "weather-forecast",
+          "batch_size": 1,
+          "url": "/get"
+        }, {
+          "type": "dtl",
+          "rules": {
+            "default": [
+              ["copy", "*"]
+            ]
+          }
+        }]
+      },
+      "test": {
+        "type": "dtl",
+        "rules": {
+          "default": [
+            ["copy", "*"]
+          ]
+        }
       }
-    }, {
-      "type": "http",
-      "system": "weather-forecast",
-      "batch_size": 1,
-      "url": "/get"
-    }, {
-      "type": "dtl",
-      "rules": {
-        "default": [
-          ["copy", "*"]
-        ]
-      }
-    }]
+    },
+    "condition": "$ENV(node-env)"
   }
 }

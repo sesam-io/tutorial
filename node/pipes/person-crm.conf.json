@@ -11,11 +11,11 @@
       "default": [
         ["copy", "*"],
         ["comment", "hop to difi and mold data to fit database"],
-        ["add", "difi-data",
+        ["merge",
           ["apply-hops", "named-rule", {
             "datasets": ["difi-postnummer dip"],
             "where": [
-              ["eq", "_S.firebase-person:ZipCode", "dip.postnummer"]
+              ["eq", "_S.ZipCode", "dip.postnummer"]
             ]
           }]
         ],
