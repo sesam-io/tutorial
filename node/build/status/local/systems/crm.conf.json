@@ -1,0 +1,8 @@
+{
+  "_id": "crm",
+  "type": "system:mssql-azure-dw",
+  "database": "sesam_training",
+  "host": "sesam.database.windows.net",
+  "password": "$SECRET(crm-password)",
+  "username": "$ENV(crm-user)"
+}

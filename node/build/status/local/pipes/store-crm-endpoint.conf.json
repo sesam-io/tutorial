@@ -1,0 +1,113 @@
+{
+  "_id": "store-crm-endpoint",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "crm-store-zipfix"
+  },
+  "sink": {
+    "type": "sql",
+    "system": "crm",
+    "batch_size": 50,
+    "bulk_operation_queue_size": 3,
+    "bulk_operation_timeout": 600,
+    "create_table_if_missing": true,
+    "keep_failed_bulk_operation_files": false,
+    "primary_key": ["SerialNumber"],
+    "schema": "dbo",
+    "schema_definition": [{
+      "type": "integer",
+      "name": "SerialNumber",
+      "default": 1,
+      "allow_null": false,
+      "index": false,
+      "max_value": 1000,
+      "min_value": -1,
+      "precision": 10,
+      "primary_key": true,
+      "scale": 2,
+      "source_property": "SerialNumber"
+    }, {
+      "type": "string",
+      "name": "new-zip-code",
+      "default": "0000",
+      "allow_null": true,
+      "index": false,
+      "max_size": 5,
+      "min_size": 0,
+      "precision": 10,
+      "primary_key": false,
+      "scale": 2,
+      "source_property": "new-zip-code"
+    }, {
+      "type": "string",
+      "name": "post",
+      "default": "",
+      "allow_null": true,
+      "index": false,
+      "max_size": 50,
+      "min_size": 0,
+      "precision": 10,
+      "primary_key": false,
+      "scale": 2,
+      "source_property": "post"
+    }, {
+      "type": "string",
+      "name": "Email",
+      "default": "",
+      "allow_null": true,
+      "index": false,
+      "max_size": 50,
+      "min_size": 0,
+      "precision": 10,
+      "primary_key": false,
+      "scale": 2,
+      "source_property": "Email"
+    }, {
+      "type": "string",
+      "name": "Userid",
+      "default": "",
+      "allow_null": true,
+      "index": false,
+      "max_size": 50,
+      "min_size": 0,
+      "precision": 10,
+      "primary_key": false,
+      "scale": 2,
+      "source_property": "Userid"
+    }, {
+      "type": "string",
+      "name": "StoreName",
+      "default": "",
+      "allow_null": true,
+      "index": false,
+      "max_size": 50,
+      "min_size": 0,
+      "precision": 10,
+      "primary_key": false,
+      "scale": 2,
+      "source_property": "StoreName"
+    }],
+    "table": "storedetails_enriched",
+    "timestamp": "time_added",
+    "truncate_table_on_first_run": false,
+    "use_bulk_operations": false
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy",
+          ["list", "new-zip-code", "post", "Email", "SerialNumber", "StoreName", "Userid"]
+        ]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  },
+  "metadata": {
+    "tags": ["test"]
+  },
+  "remove_namespaces": true
+}

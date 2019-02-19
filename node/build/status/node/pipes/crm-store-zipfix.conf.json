@@ -1,0 +1,69 @@
+{
+  "_id": "crm-store-zipfix",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "crm-store"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["comment", "this code goes through and checks if the zipcode has been wrongly stripped of a leading zero, if that is the case, then it adds it back"],
+        ["add", "new-zip-code",
+          ["if",
+            ["is-not-null", "_S.StoreZip"],
+            ["if",
+              ["eq", 3,
+                ["length",
+                  ["string", "_S.StoreZip"]
+                ]
+              ],
+              ["concat", "0",
+                ["string", "_S.StoreZip"]
+              ],
+              ["string", "_S.StoreZip"]
+            ],
+            ["string", "0000"]
+          ]
+        ],
+        ["comment", "this block checks if the corrected zip-code corresponds to a zipcode in difi-postnummer", "the if blocks goes through and checks if the zipcode has been wrongly stripped of a leading zero and makes sure that wont affect the equality"],
+        ["comment", "then it makes an apply-hop to difi-postnummer to get the variable post back"],
+        ["merge",
+          ["apply-hops", "location", {
+            "datasets": ["difi-postnummer dp"],
+            "where": [
+              ["eq",
+                ["if",
+                  ["is-not-null", "_S.StoreZip"],
+                  ["if",
+                    ["eq", 3,
+                      ["length",
+                        ["string", "_S.StoreZip"]
+                      ]
+                    ],
+                    ["concat", "0",
+                      ["string", "_S.StoreZip"]
+                    ],
+                    ["string", "_S.StoreZip"]
+                  ],
+                  ["string", "_S.StoreZip"]
+                ], "dp.postnummer"]
+            ]
+          }]
+        ],
+        ["remove", "StoreZip"],
+        ["comment", "crm-store-zipfix:difi-info"]
+      ],
+      "location": [
+        ["comment", "combines postnummer, poststed and kommunenavn to one string"],
+        ["add", "post-info",
+          ["concat",
+            ["list", "_S.difi-postnummer:postnummer", ", ", "_S.difi-postnummer:poststed", ", ", "_S.difi-postnummer:kommunenavn"]
+          ]
+        ]
+      ]
+    }
+  }
+}

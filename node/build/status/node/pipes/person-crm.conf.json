@@ -1,0 +1,30 @@
+{
+  "_id": "person-crm",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "global-person"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["comment", "hop to difi and mold data to fit database"],
+        ["merge",
+          ["apply-hops", "named-rule", {
+            "datasets": ["difi-postnummer dip"],
+            "where": [
+              ["eq", "_S.ZipCode", "dip.postnummer"]
+            ]
+          }]
+        ],
+        ["comment", "transforms happen sequencially so here we have access to the resulting data"],
+        ["add", "test", "_T.difi-data.postnummer"]
+      ],
+      "named-rule": [
+        ["copy", "*"]
+      ]
+    }
+  }
+}

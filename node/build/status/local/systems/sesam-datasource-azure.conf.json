@@ -1,0 +1,11 @@
+{
+  "_id": "sesam-datasource-azure",
+  "type": "system:microservice",
+  "authentication": "basic",
+  "docker": {
+    "image": "gamh/azure-storage:latest",
+    "port": 5000
+  },
+  "password": "$SECRET(stm-password)",
+  "username": "$ENV(stm-username)"
+}
