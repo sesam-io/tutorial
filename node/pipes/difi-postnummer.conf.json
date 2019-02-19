@@ -2,19 +2,125 @@
   "_id": "difi-postnummer",
   "type": "pipe",
   "source": {
-    "type": "csv",
-    "system": "datahotel",
-    "delimiter": ";",
-    "primary_key": "postnummer",
-    "url": "postnummer"
+    "type": "conditional",
+    "alternatives": {
+      "prod": {
+        "type": "csv",
+        "system": "datahotel",
+        "delimiter": ";",
+        "primary_key": "postnummer",
+        "url": "postnummer"
+      },
+      "test": {
+        "type": "embedded",
+        "entities": [{
+          "_id": "1",
+          "kategori": "P",
+          "kommunenavn": "BÅTSFJORD",
+          "kommunenummer": "2028",
+          "postnummer": "5163",
+          "poststed": "BÅTSFJORD"
+        }, {
+          "_id": "2",
+          "kategori": "P",
+          "kommunenavn": "NØTTERØY",
+          "kommunenummer": "2028",
+          "postnummer": "3121",
+          "poststed": "FERDER"
+        }, {
+          "_id": "3",
+          "kategori": "P",
+          "kommunenavn": "VANG",
+          "kommunenummer": "2028",
+          "postnummer": "3732",
+          "poststed": "VANG"
+        }, {
+          "_id": "4",
+          "kategori": "P",
+          "kommunenavn": "BÆRUM",
+          "kommunenummer": "2028",
+          "postnummer": "1357",
+          "poststed": "BÆRUM"
+        }, {
+          "_id": "5",
+          "kategori": "P",
+          "kommunenavn": "TRONDHIM",
+          "kommunenummer": "2028",
+          "postnummer": "7089",
+          "poststed": "TRONDHEIM"
+        }, {
+          "_id": "6",
+          "kategori": "P",
+          "kommunenavn": "OSLO",
+          "kommunenummer": "2028",
+          "postnummer": "0153",
+          "poststed": "OSLO"
+        }, {
+          "_id": "7",
+          "kategori": "P",
+          "kommunenavn": "SANDEFJORD",
+          "kommunenummer": "2028",
+          "postnummer": "2052",
+          "poststed": "SANDEFJORD"
+        }, {
+          "_id": "8",
+          "kategori": "P",
+          "kommunenavn": "ASKER",
+          "kommunenummer": "2028",
+          "postnummer": "1605",
+          "poststed": "ASKER"
+        }, {
+          "_id": "9",
+          "kategori": "P",
+          "kommunenavn": "SANDE",
+          "kommunenummer": "2028",
+          "postnummer": "3510",
+          "poststed": "SANDE"
+        }, {
+          "_id": "10",
+          "kategori": "P",
+          "kommunenavn": "SKI",
+          "kommunenummer": "2028",
+          "postnummer": "1766",
+          "poststed": "SKI"
+        }, {
+          "_id": "11",
+          "kategori": "P",
+          "kommunenavn": "EIDSVOLL",
+          "kommunenummer": "2028",
+          "postnummer": "4017",
+          "poststed": "EIDSVOLL"
+        }, {
+          "_id": "12",
+          "kategori": "P",
+          "kommunenavn": "TØNSBERG",
+          "kommunenummer": "2028",
+          "postnummer": "3125",
+          "poststed": "TØNSBERG"
+        }, {
+          "_id": "13",
+          "kategori": "P",
+          "kommunenavn": "LØRENSKOG",
+          "kommunenummer": "2028",
+          "postnummer": "1385",
+          "poststed": "LØRENSKOG"
+        }, {
+          "_id": "14",
+          "kategori": "P",
+          "kommunenavn": "BODØ",
+          "kommunenummer": "2028",
+          "postnummer": "8657",
+          "poststed": "BODØ"
+        }]
+      }
+    },
+    "condition": "$ENV(node-env)"
   },
   "transform": {
     "type": "dtl",
     "rules": {
       "default": [
         ["copy", "*"],
-        ["make-ni", "location", "postnummer"],
-        ["make-ni", "location", "kommunenummer"],
         ["add", "rdf:type",
           ["ni", "location", "postnummer"]
         ]

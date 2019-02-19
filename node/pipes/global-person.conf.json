@@ -5,8 +5,8 @@
     "type": "merge",
     "datasets": ["crm-person cp", "azure-person ap", "firebase-person fp", "salesforce-userprofile sup"],
     "equality": [
-      ["eq", "cp.EmailAddress", "ap.EmailAddress"],
-      ["eq", "cp.EmailAddress", "fp.EmailAddress"],
+      ["eq", "cp.SSN-ni", "ap.$ids"],
+      ["eq", "cp.SSN-ni", "fp.$ids"],
       ["eq", "cp.Username", "sup.Username"]
     ],
     "identity": "first",
@@ -21,11 +21,19 @@
           ["apply-hops", "foobar", {
             "datasets": ["difi-postnummer dip"],
             "where": [
-              ["eq", "_S.ZipCode", "dip.postnummer"]
+              ["or",
+                ["eq", "_S.azure-person:ZipCode", "dip.postnummer"],
+                ["eq", "_S.crm-person:PostalCode", "dip.postnummer"]
+              ]
             ]
           }]
         ],
-        ["add", "baz", "_T.foo.postnummer-ni"]
+        ["comment","Below code will first check zipcode in azure-person dataset ,if it is null then it goes to crm-person dataset and so on.basically we prioritize the order on most trusted values."]
+        ["add", "zipcode",
+          ["coalesce",
+            ["list", "_S.azure-person:ZipCode", "_S.crm-person:PostalCode", "_S.firebase-person:ZipCode"]
+          ]
+        ]
       ],
       "foobar": [
         ["add", "Municipality", "_S.kommunenavn"],

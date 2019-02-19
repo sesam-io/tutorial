@@ -1346,6 +1346,13 @@
     "rules": {
       "default": [
         ["copy", "*"],
+        ["add", "SSN-ni",
+          ["list",
+            ["ni", "azure-person", "_S.SSN"],
+            ["ni", "firebase-person", "_S.SSN"]
+          ]
+        ],
+        ["comment", "below will add  a namespaced identifier and 'rdf:type' for easy filtering later"],
         ["add", "rdf:type",
           ["ni", "crm", "person"]
         ]

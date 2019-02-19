@@ -12,6 +12,7 @@
     "rules": {
       "default": [
         ["copy", "*"],
+        ["comment", "'ni' will add  a namespaced identifier for'rdf:type'"],
         ["add", "rdf:type",
           ["ni", "crm", "store"]
         ]
