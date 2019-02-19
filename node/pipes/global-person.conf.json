@@ -28,6 +28,7 @@
             ]
           }]
         ],
+        ["comment","Below code will first check zipcode in azure-person dataset ,if it is null then it goes to crm-person dataset and so on.basically we prioritize the order on most trusted values."]
         ["add", "zipcode",
           ["coalesce",
             ["list", "_S.azure-person:ZipCode", "_S.crm-person:PostalCode", "_S.firebase-person:ZipCode"]
