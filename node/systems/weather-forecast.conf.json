@@ -4,7 +4,8 @@
   "docker": {
     "environment": {
       "appid": "$SECRET(weather-forecast-apikey)",
-      "baseurl": "$ENV(weather-forecast-baseurl)"
+      "baseurl": "$ENV(weather-forecast-baseurl)",
+      "namespace": "$ENV(weather-forecast-namespace)"
     },
     "image": "4hlberg/weather-forcast-training:latest",
     "port": 5000

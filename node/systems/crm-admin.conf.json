@@ -4,5 +4,5 @@
   "database": "sesam_training",
   "host": "sesam.database.windows.net",
   "password": "$SECRET(crm-admin-password)",
-  "username": "$ENV(crm-admin-user)"
+  "username": "$ENV(crm-user-admin)"
 }

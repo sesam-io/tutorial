@@ -1,0 +1,44 @@
+{
+  "_id": "example-hops-apply-rule",
+  "type": "pipe",
+  "source": {
+    "type": "embedded",
+    "entities": [{
+      "_id": "apply-rule",
+      "name": {
+        "firstname": "Ola",
+        "lastname": "Nordmann"
+      },
+      "zipcode": "9982"
+    }]
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["add", "address-info",
+          ["hops", {
+            "datasets": ["global-location gl"],
+            "where": [
+              ["eq", "_S.zipcode", "gl.postnummer"]
+            ]
+          }]
+        ],
+        ["merge",
+          ["apply", "address", "_T.address-info"]
+        ],
+        ["remove", "address-info"]
+      ],
+      "address": [
+        ["add", "city", "_S.poststed"],
+        ["add", "municipality", "_S.kommunenavn"]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  },
+  "metadata": {
+    "tags": ["example"]
+  }
+}

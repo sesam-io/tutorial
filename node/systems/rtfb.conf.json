@@ -1,0 +1,12 @@
+{
+  "_id": "rtfb",
+  "type": "system:microservice",
+  "docker": {
+    "environment": {
+      "PROJECT_ID": "able-bazaar-100421"
+    },
+    "image": "gabbebabbe/firebase-public-poster",
+    "port": 5000
+  },
+  "verify_ssl": true
+}

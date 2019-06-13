@@ -1,0 +1,34 @@
+{
+  "_id": "example-joins-many",
+  "type": "pipe",
+  "source": {
+    "type": "embedded",
+    "entities": [{
+      "_id": "one-to-many",
+      "zipcode": "4013"
+    }]
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "persons",
+          ["hops", {
+            "datasets": ["global-person gp"],
+            "where": [
+              ["eq", "_S.example-joins-many:zipcode", "gp.crm-person:PostalCode"]
+            ],
+            "return": "gp.global-person:fullname"
+          }]
+        ]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  },
+  "metadata": {
+    "tags": ["example"]
+  }
+}

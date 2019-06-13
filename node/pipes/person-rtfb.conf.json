@@ -1,0 +1,47 @@
+{
+  "_id": "person-rtfb",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "global-person"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["filter",
+          ["intersects",
+            ["list", "~:crm:person", "~:azure:person", "~:firebase:person"], "_S.rdf:type"]
+        ],
+        ["comment", "hop to global-location and mold data to fit database"],
+        ["copy", "global-person:*"],
+        ["merge",
+          ["apply-hops", "address", {
+            "datasets": ["global-location gl"],
+            "where": [
+              ["eq", "_S.global-person:zipcode", "gl.postnummer"]
+            ]
+          }]
+        ],
+        ["comment", "filter out those who has not consented"],
+        ["filter",
+          ["is-not-null",
+            ["hops", {
+              "datasets": ["global-consent gc"],
+              "where": [
+                ["and",
+                  ["eq", "_S.salesforce-userprofile:Username", "gc.salesforce-consent:Username"],
+                  ["eq", "gc.salesforce-consent:HasConsented", true]
+                ]
+              ]
+            }]
+          ]
+        ]
+      ],
+      "address": [
+        ["add", "municipality", "_S.kommunenavn"],
+        ["add", "city", "_S.poststed"]
+      ]
+    }
+  }
+}

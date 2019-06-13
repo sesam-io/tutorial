@@ -1,0 +1,21 @@
+{
+  "_id": "schemaservice",
+  "type": "system:microservice",
+  "authentication": "basic",
+  "connect_timeout": 60,
+  "docker": {
+    "environment": {
+      "LOG_LEVEL": "DEBUG",
+      "SESAM-API": "$ENV(API-SESAM-SELF)",
+      "SESAM-JWT": "$SECRET(JWT-SESAM-SERVICE)"
+    },
+    "image": "sesamrd.azurecr.io/sesamrd/schemaservice:latest",
+    "memory": 128,
+    "password": "$SECRET(RD-DOCKER-PRIVATE)",
+    "port": 5000,
+    "username": "$SECRET(RD-DOCKER-NAME)"
+  },
+  "read_timeout": 7200,
+  "use_https": false,
+  "verify_ssl": true
+}

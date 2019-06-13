@@ -1,0 +1,13 @@
+{
+  "_id": "global-consent",
+  "type": "pipe",
+  "source": {
+    "type": "merge",
+    "datasets": ["salesforce-consent sc"],
+    "identity": "first",
+    "version": 2
+  },
+  "metadata": {
+    "global": true
+  }
+}

@@ -22,7 +22,7 @@
     "rules": {
       "default": [
         ["copy", "*"],
-        ["comment", "below will add  a namespaced identifier and 'rdf:type' for easy filtering later"],
+        ["comment", "below we will add  a namespaced identifier and an 'rdf:type' for easy filtering later"],
         ["add", "rdf:type",
           ["ni", "embedded", "consent-purpose"]
         ]

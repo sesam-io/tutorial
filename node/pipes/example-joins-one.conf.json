@@ -1,0 +1,33 @@
+{
+  "_id": "example-joins-one",
+  "type": "pipe",
+  "source": {
+    "type": "embedded",
+    "entities": [{
+      "_id": "one-to-one",
+      "zipcode": "4013"
+    }]
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "address-data",
+          ["hops", {
+            "datasets": ["global-location gl"],
+            "where": [
+              ["eq", "_S.example-joins-one:zipcode", "gl.postnummer"]
+            ]
+          }]
+        ]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  },
+  "metadata": {
+    "tags": ["example"]
+  }
+}

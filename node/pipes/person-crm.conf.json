@@ -9,21 +9,44 @@
     "type": "dtl",
     "rules": {
       "default": [
-        ["copy", "*"],
-        ["comment", "hop to difi and mold data to fit database"],
+        ["filter",
+          ["intersects",
+            ["list", "~:crm:person", "~:azure:person", "~:firebase:person"], "_S.rdf:type"]
+        ],
+        ["comment", "hop to global-location and mold data to fit database"],
         ["merge",
-          ["apply-hops", "named-rule", {
-            "datasets": ["difi-postnummer dip"],
+          ["apply-hops", "new-rule", {
+            "datasets": ["global-location gl"],
             "where": [
-              ["eq", "_S.ZipCode", "dip.postnummer"]
+              ["eq", "_S.global-person:zipcode", "gl.postnummer"]
             ]
           }]
         ],
+        ["comment", "postinfo",
+          ["hops", {
+            "datasets": ["global-location gl"],
+            "where": [
+              ["eq", "_S.location", "gl.postnummer"]
+            ],
+            "return": ["list", "gl.kommunenavn", "gl.postnummer", "gl.rdf:type"]
+          }]
+        ],
         ["comment", "transforms happen sequencially so here we have access to the resulting data"],
-        ["add", "test", "_T.difi-data.postnummer"]
+        ["add", "Customerid", "_S.crm-person:Customerid"],
+        ["add", "Gender", "_S.crm-person:Gender"],
+        ["add", "FirstName", "_S.global-person:firstname"],
+        ["add", "MiddleInitial", "_S.crm-person:MiddleInitial"],
+        ["add", "SSN", "_S.crm-person:SSN"],
+        ["add", "LastName", "_S.global-person:lastname"],
+        ["add", "Address", "_S.crm-person:Address"],
+        ["add", "PostalCode", "_S.global-person:zipcode"],
+        ["add", "EmailAddress", "_S.crm-person:EmailAddress"],
+        ["add", "Username", "_S.crm-person:Username"],
+        ["add", "Name", "_S.global-person:fullname"]
       ],
-      "named-rule": [
-        ["copy", "*"]
+      "new-rule": [
+        ["add", "Municipality", "_S.kommunenavn"],
+        ["add", "City", "_S.poststed"]
       ]
     }
   }

@@ -1408,7 +1408,7 @@
           "ZipCode": "4017"
         }]
       },
-      "production:": {
+      "prod": {
         "type": "json",
         "system": "firebase",
         "url": "/"
@@ -1567,6 +1567,14 @@
         ["copy", "*"],
         ["add", "rdf:type",
           ["ni", "firebase", "person"]
+        ],
+        ["add", "SSN",
+          ["ni-id",
+            ["ni", "_S._id"]
+          ]
+        ],
+        ["add", "SSN-ni",
+          ["ni", "azure-person", "_T.SSN"]
         ]
       ]
     }

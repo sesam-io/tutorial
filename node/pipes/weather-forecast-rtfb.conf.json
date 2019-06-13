@@ -1,0 +1,42 @@
+{
+  "_id": "weather-forecast-rtfb",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "global-location"
+  },
+  "transform": [{
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["filter",
+          ["eq", "_S.difi-postnummer:postnummer", "0369"]
+        ],
+        ["copy", "*"]
+      ]
+    }
+  }, {
+    "type": "http",
+    "system": "weather-forecast",
+    "batch_size": 1,
+    "url": "/get"
+  }, {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["add", "_id", "_S._id"],
+        ["add", "weather-description",
+          ["first", "_S.weather.description"]
+        ],
+        ["add", "temprature",
+          ["float",
+            ["-", "_S.main.temp", "~f272.15"]
+          ]
+        ]
+      ]
+    }
+  }],
+  "pump": {
+    "mode": "manual"
+  }
+}

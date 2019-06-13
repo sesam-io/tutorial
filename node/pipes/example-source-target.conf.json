@@ -1,0 +1,33 @@
+{
+  "_id": "example-source-target",
+  "type": "pipe",
+  "source": {
+    "type": "embedded",
+    "entities": [{
+      "_id": "1",
+      "firstname": "Ola",
+      "lastname": "Andersen"
+    }]
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "fullname",
+          ["concat", "_S.firstname", " ", "_S.lastname"]
+        ],
+        ["add", "greeting",
+          ["concat", "Hei ", "_T.fullname", "!"]
+        ]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  },
+  "metadata": {
+    "tags": ["example"]
+  },
+  "remove_namespaces": true
+}

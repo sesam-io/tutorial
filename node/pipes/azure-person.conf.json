@@ -4,7 +4,16 @@
   "source": {
     "type": "conditional",
     "alternatives": {
-      "embedded": {
+      "Actual_prod": {
+        "type": "csv",
+        "system": "sesam-datasource-azure",
+        "blacklist": ["Password"],
+        "delimiter": ",",
+        "encoding": "utf-8",
+        "primary_key": "SSN",
+        "url": "/file/sesam-training/data/test_people_sesam_training1.csv"
+      },
+      "prod": {
         "type": "embedded",
         "entities": [{
           "_id": "23072451376",
@@ -1408,15 +1417,6 @@
           "ZipCode": "1357"
         }]
       },
-      "production:": {
-        "type": "csv",
-        "system": "sesam-datasource-azure",
-        "blacklist": ["Password"],
-        "delimiter": ",",
-        "encoding": "utf-8",
-        "primary_key": "SSN",
-        "url": "/file/sesam-training/data/test_people_sesam_training1.csv"
-      },
       "test": {
         "type": "embedded",
         "entities": [{
@@ -1569,13 +1569,7 @@
     "rules": {
       "default": [
         ["copy", "*"],
-        ["add", "SSN-ni",
-          ["list",
-            ["ni", "crm-person", "_S.SSN"],
-            ["ni", "firebase-person", "_S.SSN"]
-          ]
-        ],
-        ["comment", "below will add  a namespaced identifier and 'rdf:type' for easy filtering later"],
+        ["comment", "below we will add  a namespaced identifier and 'rdf:type' for easy filtering later"],
         ["add", "rdf:type",
           ["ni", "azure", "person"]
         ]

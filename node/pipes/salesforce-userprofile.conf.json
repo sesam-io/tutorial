@@ -4,7 +4,7 @@
   "source": {
     "type": "conditional",
     "alternatives": {
-      "embedded": {
+      "prod": {
         "type": "embedded",
         "entities": [{
           "_id": "0",

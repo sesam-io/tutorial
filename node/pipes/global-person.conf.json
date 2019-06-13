@@ -6,7 +6,7 @@
     "datasets": ["crm-person cp", "azure-person ap", "firebase-person fp", "salesforce-userprofile sup"],
     "equality": [
       ["eq", "cp.SSN-ni", "ap.$ids"],
-      ["eq", "cp.SSN-ni", "fp.$ids"],
+      ["eq", "fp.SSN-ni", "ap.$ids"],
       ["eq", "cp.Username", "sup.Username"]
     ],
     "identity": "first",
@@ -17,28 +17,47 @@
     "rules": {
       "default": [
         ["copy", "*"],
-        ["merge",
-          ["apply-hops", "foobar", {
-            "datasets": ["difi-postnummer dip"],
-            "where": [
-              ["or",
-                ["eq", "_S.azure-person:ZipCode", "dip.postnummer"],
-                ["eq", "_S.crm-person:PostalCode", "dip.postnummer"]
+        ["comment", "Below code will first check zipcode in azure-person dataset ,if it is null then it goes to crm-person dataset and so on.basically we prioritize the order on most trusted values."],
+        ["if",
+          ["intersects",
+            ["list", "~:crm:person", "~:azure:person", "~:firebase:person"], "_S.rdf:type"],
+          [
+            ["add", "zipcode",
+              ["coalesce",
+                ["list", "_S.azure-person:ZipCode", "_S.crm-person:PostalCode", "_S.firebase-person:ZipCode"]
+              ]
+            ],
+            ["add", "firstname",
+              ["coalesce",
+                ["list", "_S.azure-person:GivenName", "_S.crm-person:FirstName", "_S.firebase-person:FirstName"]
+              ]
+            ],
+            ["add", "lastname",
+              ["coalesce",
+                ["list", "_S.azure-person:Surname", "_S.crm-person:LastName", "_S.firebase-person:LastName"]
+              ]
+            ],
+            ["add", "email",
+              ["coalesce",
+                ["list", "_S.azure-person:EmailAddress", "_S.crm-person:EmailAddress", "_S.firebase-person:EmailAddress"]
+              ]
+            ],
+            ["comment", "checks if _S.crm-person:MiddleInitial exists, if so it concats it in to the fullname, else it ignores MiddleInitial"],
+            ["if",
+              ["is-not-null", "_S.crm-person:MiddleInitial"],
+              ["add", "fullname",
+                ["concat", "_T.firstname", " ", "_S.crm-person:MiddleInitial", ". ", "_T.lastname"]
+              ],
+              ["add", "fullname",
+                ["concat", "_T.firstname", " ", "_T.lastname"]
               ]
             ]
-          }]
-        ],
-        ["comment","Below code will first check zipcode in azure-person dataset ,if it is null then it goes to crm-person dataset and so on.basically we prioritize the order on most trusted values."]
-        ["add", "zipcode",
-          ["coalesce",
-            ["list", "_S.azure-person:ZipCode", "_S.crm-person:PostalCode", "_S.firebase-person:ZipCode"]
           ]
         ]
-      ],
-      "foobar": [
-        ["add", "Municipality", "_S.kommunenavn"],
-        ["add", "City", "_S.poststed"]
       ]
     }
+  },
+  "metadata": {
+    "global": true
   }
 }

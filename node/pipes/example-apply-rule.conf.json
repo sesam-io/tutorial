@@ -1,0 +1,53 @@
+{
+  "_id": "example-apply-rule",
+  "type": "pipe",
+  "source": {
+    "type": "embedded",
+    "entities": [{
+      "_id": "apply-rule",
+      "name": {
+        "firstname": "Ola",
+        "lastname": "Nordmann"
+      },
+      "zipcode": "4013"
+    }]
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["add", "address",
+          ["first",
+            ["apply-hops", "location", {
+              "datasets": ["global-location gl"],
+              "where": [
+                ["eq", "_S.example-apply-rule:zipcode", "gl.postnummer"]
+              ]
+            }]
+          ]
+        ],
+        ["add", "city", "_T.address.difi-postnummer:poststed"],
+        ["merge",
+          ["apply", "fullname", "_S.name"]
+        ]
+      ],
+      "fullname": [
+        ["add", "fullname",
+          ["concat",
+            ["list", "_S.firstname", " ", "_S.lastname"]
+          ]
+        ]
+      ],
+      "location": [
+        ["copy", "poststed"],
+        ["copy", "kommunenavn"]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  },
+  "metadata": {
+    "tags": ["example"]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "_id": "import-orders",
+  "type": "system:microservice",
+  "docker": {
+    "image": "jc89als/import-orders:latest",
+    "port": 5000
+  },
+  "verify_ssl": true
+}

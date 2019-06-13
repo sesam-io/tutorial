@@ -1,0 +1,13 @@
+{
+  "_id": "global-location",
+  "type": "pipe",
+  "source": {
+    "type": "merge",
+    "datasets": ["difi-postnummer dip"],
+    "identity": "first",
+    "version": 2
+  },
+  "metadata": {
+    "global": true
+  }
+}

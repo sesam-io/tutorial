@@ -9,6 +9,9 @@
     "type": "dtl",
     "rules": {
       "default": [
+        ["filter",
+          ["in", "~:salesforce:userprofile", "_S.rdf:type"]
+        ],
         ["copy", "*"],
         ["comment", "First rule inside 'hops->where': to connect users, second rule to only connect those who have agreed"],
         ["add", "consents",

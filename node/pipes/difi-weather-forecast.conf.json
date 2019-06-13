@@ -4,9 +4,9 @@
   "source": {
     "type": "conditional",
     "alternatives": {
-      "production": {
+      "prod": {
         "type": "dataset",
-        "dataset": "difi-postnummer"
+        "dataset": "global-location"
       },
       "test": {
         "type": "embedded",
@@ -18,13 +18,16 @@
   "transform": {
     "type": "conditional",
     "alternatives": {
-      "production": {
+      "prod": {
         "type": "chained",
         "transforms": [{
           "type": "dtl",
           "rules": {
             "default": [
-              ["copy", "*"]
+              ["copy", "*"],
+              ["filter",
+                ["eq", "_S.postnummer", "8005"]
+              ]
             ]
           }
         }, {
@@ -36,6 +39,7 @@
           "type": "dtl",
           "rules": {
             "default": [
+              ["add", "_id", "_S._id"],
               ["copy", "*"]
             ]
           }
@@ -51,5 +55,9 @@
       }
     },
     "condition": "$ENV(node-env)"
-  }
+  },
+  "pump": {
+    "mode": "manual"
+  },
+  "namespaced_identifiers": true
 }

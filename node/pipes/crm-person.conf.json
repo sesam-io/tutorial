@@ -1208,11 +1208,11 @@
           "Username": "Theimence"
         }]
       },
-      "production:": {
+      "prod": {
         "type": "sql",
-        "system": "crm",
+        "system": "crm-admin",
         "primary_key": "Customerid",
-        "table": "users"
+        "table": "person"
       },
       "test": {
         "type": "embedded",
@@ -1346,13 +1346,8 @@
     "rules": {
       "default": [
         ["copy", "*"],
-        ["add", "SSN-ni",
-          ["list",
-            ["ni", "azure-person", "_S.SSN"],
-            ["ni", "firebase-person", "_S.SSN"]
-          ]
-        ],
-        ["comment", "below will add  a namespaced identifier and 'rdf:type' for easy filtering later"],
+        ["comment", "below will add a namespaced identifier and 'rdf:type' for easy filtering later"],
+        ["make-ni", "azure-person", "SSN"],
         ["add", "rdf:type",
           ["ni", "crm", "person"]
         ]

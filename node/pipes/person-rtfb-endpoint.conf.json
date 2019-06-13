@@ -1,0 +1,29 @@
+{
+  "_id": "person-rtfb-endpoint",
+  "type": "pipe",
+  "source": {
+    "type": "dataset",
+    "dataset": "person-rtfb"
+  },
+  "sink": {
+    "type": "json",
+    "system": "rtfb-pro",
+    "url": "asmund"
+  },
+  "transform": {
+    "type": "dtl",
+    "rules": {
+      "default": [
+        ["copy", "*"],
+        ["add", "timestamp",
+          ["datetime-format", "%Y-%m-%dT%H:%M:%SZ",
+            ["now"]
+          ]
+        ]
+      ]
+    }
+  },
+  "pump": {
+    "mode": "manual"
+  }
+}
