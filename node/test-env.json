@@ -1,7 +1,7 @@
 {
   "API-SESAM-SELF": "https://datahub-2317534d.sesam.cloud/api",
   "crm-user-admin": "Training@sesam.database.windows.net",
-  "node-env": "prod",
+  "node-env": "test",
   "weather-forecast-baseurl": "https://api.openweathermap.org/data/2.5/weather?zip=",
   "weather-forecast-namespace": "difi-postnummer:"
 }
