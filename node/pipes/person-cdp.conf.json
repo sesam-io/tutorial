@@ -1,5 +1,5 @@
 {
-  "_id": "person-rtfb",
+  "_id": "person-cdp",
   "type": "pipe",
   "source": {
     "type": "dataset",
@@ -10,8 +10,7 @@
     "rules": {
       "default": [
         ["filter",
-          ["intersects",
-            ["list", "~:crm:person", "~:azure:person", "~:firebase:person"], "_S.rdf:type"]
+          ["in", "~:salesforce:userprofile", "_S.rdf:type"]
         ],
         ["comment", "hop to global-location and mold data to fit database"],
         ["copy", "global-person:*"],

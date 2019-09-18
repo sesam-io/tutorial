@@ -1,5 +1,5 @@
 {
-  "_id": "sesam-datasource-azure",
+  "_id": "hr",
   "type": "system:microservice",
   "authentication": "basic",
   "docker": {

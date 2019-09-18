@@ -9,58 +9,44 @@
     "type": "dtl",
     "rules": {
       "default": [
-        ["copy", "*"],
+        ["copy", "*", "crm-store:StoreZip"],
         ["comment", "this code goes through and checks if the zipcode has been wrongly stripped of a leading zero, if that is the case, then it adds it back"],
-        ["add", "new-zip-code",
-          ["if",
-            ["is-not-null", "_S.StoreZip"],
+        ["comment", "alternative 1"],
+        ["comment",
+          ["add", "StoreZip",
             ["if",
-              ["eq", 3,
-                ["length",
+              ["is-not-null", "_S.crm-store:StoreZip"],
+              ["if",
+                ["eq", 3,
+                  ["length",
+                    ["string", "_S.StoreZip"]
+                  ]
+                ],
+                ["concat", "0",
                   ["string", "_S.StoreZip"]
-                ]
-              ],
-              ["concat", "0",
+                ],
                 ["string", "_S.StoreZip"]
-              ],
-              ["string", "_S.StoreZip"]
-            ],
-            ["string", "0000"]
+              ]
+            ]
           ]
         ],
-        ["comment", "this block checks if the corrected zip-code corresponds to a zipcode in difi-postnummer", "the if blocks goes through and checks if the zipcode has been wrongly stripped of a leading zero and makes sure that wont affect the equality"],
-        ["comment", "then it makes an apply-hop to difi-postnummer to get the variable post back"],
+        ["comment", "alternative 2"],
         ["merge",
-          ["apply-hops", "location", {
-            "datasets": ["global-location gz"],
-            "where": [
-              ["eq",
-                ["if",
-                  ["is-not-null", "_S.StoreZip"],
-                  ["if",
-                    ["eq", 3,
-                      ["length",
-                        ["string", "_S.StoreZip"]
-                      ]
-                    ],
-                    ["concat", "0",
-                      ["string", "_S.StoreZip"]
-                    ],
-                    ["string", "_S.StoreZip"]
-                  ],
-                  ["string", "_S.StoreZip"]
-                ], "gz.postnummer"]
-            ]
-          }]
-        ],
-        ["remove", "StoreZip"],
-        ["comment", "crm-store-zipfix:difi-info"]
+          ["apply", "iterator",
+            ["string", "_S.crm-store:StoreZip"]
+          ]
+        ]
       ],
-      "location": [
-        ["comment", "combines postnummer, poststed and kommunenavn to one string"],
-        ["add", "post-info",
-          ["concat",
-            ["list", "_S.difi-postnummer:postnummer", ", ", "_S.difi-postnummer:poststed", ", ", "_S.difi-postnummer:kommunenavn"]
+      "iterator": [
+        ["if",
+          ["eq", 4,
+            ["length", "_S."]
+          ],
+          ["add", "StoreZip", "_S."],
+          ["merge",
+            ["apply", "iterator",
+              ["concat", "0", "_S."]
+            ]
           ]
         ]
       ]

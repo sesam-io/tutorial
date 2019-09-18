@@ -1210,7 +1210,7 @@
       },
       "prod": {
         "type": "sql",
-        "system": "crm-admin",
+        "system": "crm",
         "primary_key": "Customerid",
         "table": "person"
       },
@@ -1346,8 +1346,6 @@
     "rules": {
       "default": [
         ["copy", "*"],
-        ["comment", "below will add a namespaced identifier and 'rdf:type' for easy filtering later"],
-        ["make-ni", "azure-person", "SSN"],
         ["add", "rdf:type",
           ["ni", "crm", "person"]
         ]

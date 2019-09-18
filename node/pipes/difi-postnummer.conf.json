@@ -6,7 +6,7 @@
     "alternatives": {
       "prod": {
         "type": "csv",
-        "system": "datahotel",
+        "system": "difi",
         "delimiter": ";",
         "primary_key": "postnummer",
         "url": "postnummer"

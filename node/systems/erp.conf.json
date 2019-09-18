@@ -1,0 +1,24 @@
+{
+  "_id": "erp",
+  "type": "system:microservice",
+  "docker": {
+    "environment": {
+      "KEYFILE": {
+        "type": "service_account",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "client_email": "firebase-adminsdk-wptgf@sesamtraining-209410.iam.gserviceaccount.com",
+        "client_id": "102646526467169595199",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-wptgf%40sesamtraining-209410.iam.gserviceaccount.com",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDU2oBRFXIJ8hyq\nn3hmeXUBa/a4CrEsTCv0wh3St6mnid4u13LsP+P20OUyIOgZOyhpgRwOLWF3BvS/\ncr7VQ6Y3lpvsHncYXLQHTDBRLPk84Sk5eSINVeXEKHKAVKES+yewQj8quOTcVEZF\nURDxwF+1ptiCFmwCqNuhgpHqCOXbf7gNfvSWHAbaPGVoQRevZTobhxvObwWJXK1g\n4+FSDBeTdh20F/J6oyIasULBq1BwvvFzg7E3CDRBwWMFcwqBV3mCB4/BGd4YHir5\nMouq44o0lftgBwXJSfoYfJUzrRLn2DjFeeB0YLRItZvXZ139xK8wlFllQ2NlO6lQ\nmh0IiN7ZAgMBAAECggEAG/0yb9cX1I55bgdDvAffFqWFfwxq4UYP5qKq7MU5Yh47\nMOIkSsQY/CDabpXMp1qz1PHFCGk3voDT6KPUS7NWVUtw6+LSqsmv46DFXrtA99ws\nwVG4JFRF/x4Jdm4KczZC8Qa5CytebsmHJwDCr2NqQnby0+JSaCQfo1SJzuJGJW9f\ntEFqjhDKFM+vz+AkLUMjAmK4GDJS2S6LNwNy0pXn2ABgRVn4q6c9TzCC1z8BhLue\nN8kiS0TQyhjxkPLZ7TLtOsKugMW2msS8CVvP1dTjBVxNlyOFSpdEIAvVEm9FQdY4\nYQxG4ic5kFXdIcDYi85bDiuQXB/DlyH+boFqohFw3QKBgQD5YIC6ctvYsUvJSGcb\nXf0S9YxxhO7DZBPXEARV4W/oMuPnL9ilmjzPSS4ULc3nxMPgooS0wZk6JmYu8bmv\nbfIyyZ86vt5wkC4r6bRvj9rF8UTBxsRFZseYG24qmnD42pSBfG4jyfOvGg9ejXD9\nL4c8oiEiM8LwDnLi9dx1laYBxQKBgQDaga2O7U0zu/hHHlSYmtTCBUX6beiGizls\nOefQtqwy4qPssKpj5wyTMZZfBzBJ3euLstssTadbhA5XZLZ8Q3E0lEXOQ1lWkZbe\nbtirq8sE+G0J79nPKu9S1iZkpkAwJmWFxaiOw7ANmD3xMXSc5YhVVQ/LtB2twHJM\nYZAaYdreBQKBgAIdm3n5d3wDJQ10G8vTpE4A30wnQI9PzgtJC4BfBUAHDn/rm/7r\nrBBmIonxSYnp1W+WcWHHMrGXmc5UJqsiV6eupjctX129G2cr+Gfp5IVBYr/yG8Aq\n+w6DTQ/3d3XlBNWEZLrQ/8xAgFjhAlBjktYk2fscTU8UEE10oIYu2tWxAoGAcdG+\n8IaYAmzVpWYdNujgDrjkfNCnoP4AyWlYYZXmGROJxA86kpOWL05TP+jktHWO7tQZ\n6vgAR2GAfvGNRSl0XKknu4vFi5yG9BLVdockV9B4LAbudEWvKH04vpEDOpGlrIsL\nhGJW4J3/FhZm4huGarzGX5vRIeLvJu5jO/rhIWkCgYEAvqGGvvAkFPjOpoXPpios\nTn8S3XC0zudG/LWl3IHuInuS7G6fvdpzH4oJubTFHxVjDYPysAf4xKP05bh95Uv3\nllPRFhDWb5DPgnSlP6TnzkgPS50bB1N9A2qA58XsKQabcDDdve+Oa4uSBSefLjLy\nqIJS4o5bpyi0kwpxCpAxdGk=\n-----END PRIVATE KEY-----\n",
+        "private_key_id": "74187676e33b71fb95ce29f613706de114e5d7b1",
+        "project_id": "sesamtraining-209410",
+        "token_uri": "https://oauth2.googleapis.com/token"
+      },
+      "PROJECT_ID": "sesamtraining-209410"
+    },
+    "image": "sesamcommunity/firebase:latest",
+    "memory": 512,
+    "port": 5000
+  }
+}

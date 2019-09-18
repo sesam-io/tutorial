@@ -7,7 +7,7 @@
   },
   "sink": {
     "type": "sql",
-    "system": "crm-admin",
+    "system": "crm",
     "batch_size": 50,
     "bulk_operation_queue_size": 3,
     "bulk_operation_timeout": 600,
