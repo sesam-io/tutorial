@@ -1,12 +1,12 @@
 {
-  "_id": "azure-person",
+  "_id": "hr-person",
   "type": "pipe",
   "source": {
     "type": "conditional",
     "alternatives": {
       "Actual_prod": {
         "type": "csv",
-        "system": "sesam-datasource-azure",
+        "system": "hr",
         "blacklist": ["Password"],
         "delimiter": ",",
         "encoding": "utf-8",
@@ -1571,7 +1571,7 @@
         ["copy", "*"],
         ["comment", "below we will add  a namespaced identifier and 'rdf:type' for easy filtering later"],
         ["add", "rdf:type",
-          ["ni", "azure", "person"]
+          ["ni", "hr", "person"]
         ]
       ]
     }

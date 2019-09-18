@@ -1,5 +1,5 @@
 {
-  "_id": "weather-forecast-rtfb",
+  "_id": "weather-forecast-cdp",
   "type": "pipe",
   "source": {
     "type": "dataset",
@@ -10,7 +10,7 @@
     "rules": {
       "default": [
         ["filter",
-          ["eq", "_S.difi-postnummer:postnummer", "0369"]
+          ["eq", "_S.difi-postnummer:postnummer", "0376"]
         ],
         ["copy", "*"]
       ]
@@ -25,6 +25,7 @@
     "rules": {
       "default": [
         ["add", "_id", "_S._id"],
+        ["add", "zipcode", "_S._id"],
         ["add", "weather-description",
           ["first", "_S.weather.description"]
         ],

@@ -3,11 +3,11 @@
   "type": "pipe",
   "source": {
     "type": "merge",
-    "datasets": ["crm-person cp", "azure-person ap", "firebase-person fp", "salesforce-userprofile sup"],
+    "datasets": ["crm-person cp", "hr-person hr", "erp-person ep", "salesforce-userprofile su"],
     "equality": [
-      ["eq", "cp.SSN-ni", "ap.$ids"],
-      ["eq", "fp.SSN-ni", "ap.$ids"],
-      ["eq", "cp.Username", "sup.Username"]
+      ["eq", "cp.crm-person:SSN", "hr.hr-person:SSN"],
+      ["eq", "ep.erp-person:SSN", "hr.hr-person:SSN"],
+      ["eq", "ep.erp-person:Username", "su.salesforce-userprofile:Username"]
     ],
     "identity": "first",
     "version": 2
@@ -16,43 +16,43 @@
     "type": "dtl",
     "rules": {
       "default": [
-        ["copy", "*"],
-        ["comment", "Below code will first check zipcode in azure-person dataset ,if it is null then it goes to crm-person dataset and so on.basically we prioritize the order on most trusted values."],
-        ["if",
-          ["intersects",
-            ["list", "~:crm:person", "~:azure:person", "~:firebase:person"], "_S.rdf:type"],
-          [
-            ["add", "zipcode",
-              ["coalesce",
-                ["list", "_S.azure-person:ZipCode", "_S.crm-person:PostalCode", "_S.firebase-person:ZipCode"]
-              ]
-            ],
-            ["add", "firstname",
-              ["coalesce",
-                ["list", "_S.azure-person:GivenName", "_S.crm-person:FirstName", "_S.firebase-person:FirstName"]
-              ]
-            ],
-            ["add", "lastname",
-              ["coalesce",
-                ["list", "_S.azure-person:Surname", "_S.crm-person:LastName", "_S.firebase-person:LastName"]
-              ]
-            ],
-            ["add", "email",
-              ["coalesce",
-                ["list", "_S.azure-person:EmailAddress", "_S.crm-person:EmailAddress", "_S.firebase-person:EmailAddress"]
-              ]
-            ],
-            ["comment", "checks if _S.crm-person:MiddleInitial exists, if so it concats it in to the fullname, else it ignores MiddleInitial"],
-            ["if",
-              ["is-not-null", "_S.crm-person:MiddleInitial"],
-              ["add", "fullname",
-                ["concat", "_T.firstname", " ", "_S.crm-person:MiddleInitial", ". ", "_T.lastname"]
-              ],
-              ["add", "fullname",
-                ["concat", "_T.firstname", " ", "_T.lastname"]
-              ]
+        ["comment", "Lesson 3", "this adds 'fullname' field from erp-person"],
+        ["merge",
+          ["apply", "nameFixer", "_S.erp-person:name"]
+        ],
+        ["remove", "erp-person:name"],
+        ["comment", "Lesson 4", "Adds more global properties based off of all the different data sources."],
+        ["add", "zipcode",
+          ["coalesce",
+            ["list", "_S.hr-person:ZipCode", "_S.erp-person:ZipCode", "_S.crm-person:PostalCode"]
+          ]
+        ],
+        ["add", "email",
+          ["coalesce", "_S.EmailAddress"]
+        ],
+        ["add", "firstname",
+          ["coalesce",
+            ["list", "_S.crm-person:Firstname", "_T.erp-person:Firstname", "_S.hr-person:GivenName"]
+          ]
+        ],
+        ["add", "lastname",
+          ["coalesce",
+            ["list", "_S.crm-person:LastName", "_T.erp-person:Lastname", "_S.hr-person:Surname"]
+          ]
+        ],
+        ["add", "fullname",
+          ["coalesce",
+            ["list", "_T.global-person:fullname",
+              ["concat", "_T.global-person:firstname", " ", "_T.global-person:lastname"]
             ]
           ]
+        ]
+      ],
+      "nameFixer": [
+        ["comment", "Lesson 3"],
+        ["copy", "*"],
+        ["add", "fullname",
+          ["concat", "_S.erp-person:Firstname", " ", "_S.erp-person:MiddleInitial", " ", "_S.erp-person:Lastname"]
         ]
       ]
     }

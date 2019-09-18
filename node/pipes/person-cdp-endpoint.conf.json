@@ -1,14 +1,14 @@
 {
-  "_id": "person-rtfb-endpoint",
+  "_id": "person-cdp-endpoint",
   "type": "pipe",
   "source": {
     "type": "dataset",
-    "dataset": "person-rtfb"
+    "dataset": "person-cdp"
   },
   "sink": {
     "type": "json",
-    "system": "rtfb-pro",
-    "url": "asmund"
+    "system": "cdp",
+    "url": "test"
   },
   "transform": {
     "type": "dtl",
